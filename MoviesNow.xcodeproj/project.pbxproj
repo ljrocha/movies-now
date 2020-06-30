@@ -12,6 +12,8 @@
 		463898AF24AAF83C001446DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463898AE24AAF83C001446DF /* Assets.xcassets */; };
 		463898B224AAF83C001446DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463898B024AAF83C001446DF /* LaunchScreen.storyboard */; };
 		463898BA24AAFC80001446DF /* NowPlayingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463898B924AAFC80001446DF /* NowPlayingListViewController.swift */; };
+		463898BC24AAFD2D001446DF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463898BB24AAFD2D001446DF /* Movie.swift */; };
+		463898BE24AB03D9001446DF /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463898BD24AB03D9001446DF /* MovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		463898B124AAF83C001446DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		463898B324AAF83C001446DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		463898B924AAFC80001446DF /* NowPlayingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingListViewController.swift; sourceTree = "<group>"; };
+		463898BB24AAFD2D001446DF /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		463898BD24AB03D9001446DF /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				463898A524AAF83B001446DF /* AppDelegate.swift */,
 				463898A724AAF83B001446DF /* SceneDelegate.swift */,
 				463898B924AAFC80001446DF /* NowPlayingListViewController.swift */,
+				463898BD24AB03D9001446DF /* MovieCell.swift */,
+				463898BB24AAFD2D001446DF /* Movie.swift */,
 				463898AE24AAF83C001446DF /* Assets.xcassets */,
 				463898B024AAF83C001446DF /* LaunchScreen.storyboard */,
 				463898B324AAF83C001446DF /* Info.plist */,
@@ -136,6 +142,8 @@
 			files = (
 				463898BA24AAFC80001446DF /* NowPlayingListViewController.swift in Sources */,
 				463898A624AAF83B001446DF /* AppDelegate.swift in Sources */,
+				463898BC24AAFD2D001446DF /* Movie.swift in Sources */,
+				463898BE24AB03D9001446DF /* MovieCell.swift in Sources */,
 				463898A824AAF83B001446DF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
