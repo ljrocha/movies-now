@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NowPlayingListViewController.swift
 //  MoviesNow
 //
 //  Created by Leandro Rocha on 6/29/20.
@@ -8,14 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NowPlayingListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBlue
+
+        view.backgroundColor = .systemRed
     }
 
-
 }
-
