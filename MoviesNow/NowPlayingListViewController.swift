@@ -26,26 +26,23 @@ class NowPlayingListViewController: UIViewController {
         configureCollectionView()
         configureDataSource()
         
-        getMovies()
+        fetchMovies()
     }
     
-    func getMovies() {
-        let baseURLString = "https://api.themoviedb.org/3/movie/now_playing?api_key=d9849a7a8ca5063953c590dc110d6874"
-        let url = URL(string: baseURLString)!
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            let jsonDecoder = JSONDecoder()
-            if let data = data, let movieResponse = try? jsonDecoder.decode(MovieResponse.self, from: data) {
+    func fetchMovies() {
+        MovieStore.shared.fetchMovies { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let movies):
                 DispatchQueue.main.async {
-                    self.movies = movieResponse.results
+                    self.movies = movies
                     self.updateMovies()
                 }
-            } else {
-                print("Either no data was found, or data was not properly decoded.")
-                return
+            case .failure(let error):
+                // Display error in an alert
+                print(error.rawValue)
             }
         }
-        task.resume()
     }
     
     func updateMovies() {

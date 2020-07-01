@@ -28,23 +28,13 @@ class MovieCell: UICollectionViewCell {
     func set(movie: Movie) {
         titleLabel.text = movie.title
         
-        guard let imagePath = movie.image else { return }
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        let url = URL(string: baseURLString + imagePath)!
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let response = response as? HTTPURLResponse, response.statusCode == 200,
-                let data = data,
-                let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                }
-            } else {
-                print("Either no data was found, or data was not properly decoded.")
-                return
+        MovieStore.shared.fetchPosterImage(for: movie, size: .small) { [weak self] image in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.imageView.image = image
             }
         }
-        task.resume()
     }
     
     private func configure() {
@@ -53,7 +43,7 @@ class MovieCell: UICollectionViewCell {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

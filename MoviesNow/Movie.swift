@@ -19,7 +19,9 @@ struct Movie: Decodable, Hashable {
     let releaseDate: String
     let adult: Bool
     let genres: [Int]
-    let image: String?
+    let posterImagePath: String?
+    let backdropImagePath: String?
+    let voteAverage: Double
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,7 +30,9 @@ struct Movie: Decodable, Hashable {
         case releaseDate = "release_date"
         case adult
         case genres = "genre_ids"
-        case image = "poster_path"
+        case posterImagePath = "poster_path"
+        case backdropImagePath = "backdrop_path"
+        case voteAverage = "vote_average"
     }
     
     func hash(into hasher: inout Hasher) {
