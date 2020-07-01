@@ -14,6 +14,7 @@ class MovieCell: UICollectionViewCell {
     
     let imageView = UIImageView(frame: .zero)
     let titleLabel = UILabel(frame: .zero)
+    let genreLabel = UILabel(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +28,7 @@ class MovieCell: UICollectionViewCell {
     
     func set(movie: Movie) {
         titleLabel.text = movie.title
+        genreLabel.text = movie.genresString
         
         MovieStore.shared.fetchPosterImage(for: movie, size: .small) { [weak self] image in
             guard let self = self else { return }
@@ -40,6 +42,7 @@ class MovieCell: UICollectionViewCell {
     private func configure() {
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
+        contentView.addSubview(genreLabel)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -47,6 +50,11 @@ class MovieCell: UICollectionViewCell {
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        genreLabel.font = UIFont.systemFont(ofSize: 10, weight: .light)
+        genreLabel.textAlignment = .center
+        genreLabel.numberOfLines = 1
+        genreLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let padding: CGFloat = 0
         NSLayoutConstraint.activate([
@@ -57,7 +65,12 @@ class MovieCell: UICollectionViewCell {
             
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding)
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            
+            genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 3),
+            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            genreLabel.heightAnchor.constraint(equalToConstant: 14)
         ])
     }
 }
