@@ -11,6 +11,7 @@ import UIKit
 class MovieDetailViewController: UIViewController {
 
     let imageView = UIImageView(frame: .zero)
+    let movieInfoView = MNMovieInfoView(frame: .zero)
     
     var movie: Movie!
     
@@ -40,15 +41,23 @@ class MovieDetailViewController: UIViewController {
     
     private func configure() {
         view.addSubview(imageView)
+        view.addSubview(movieInfoView)
         
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
+        movieInfoView.set(movie: movie)
+        
+        let padding: CGFloat = 10
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.5)
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.5),
+            
+            movieInfoView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -3),
+            movieInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            movieInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
         ])
     }
 
