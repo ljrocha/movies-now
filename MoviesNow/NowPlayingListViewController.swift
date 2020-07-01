@@ -14,10 +14,10 @@ class NowPlayingListViewController: UIViewController {
         case main
     }
     
-    var movies: [Movie] = []
-    
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
+    
+    var movies: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +75,7 @@ class NowPlayingListViewController: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
+        collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.reuseID)
     }
@@ -87,4 +88,15 @@ class NowPlayingListViewController: UIViewController {
         }
     }
 
+}
+
+extension NowPlayingListViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movie = movies[indexPath.row]
+        
+        let movieDetailViewController = MovieDetailViewController()
+        movieDetailViewController.movie = movie
+        navigationController?.pushViewController(movieDetailViewController, animated: true)
+    }
 }
