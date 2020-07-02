@@ -17,7 +17,7 @@ class MNMovieInfoView: UIView {
     let genreTitleLabel = MNLabel(textStyle: .headline)
     let genreLabel = MNLabel(textStyle: .body)
     let userScoreTitleLabel = MNLabel(textStyle: .headline)
-    let userScoreLabel = MNLabel(textStyle: .body)
+    let userScoreView = MNUserScoreView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,7 +30,7 @@ class MNMovieInfoView: UIView {
     }
     
     private func configure() {
-        addSubviews(titleLabel, dateLabel, overviewTitleLabel, overviewLabel, genreTitleLabel, genreLabel, userScoreTitleLabel, userScoreLabel)
+        addSubviews(titleLabel, dateLabel, overviewTitleLabel, overviewLabel, genreTitleLabel, genreLabel, userScoreTitleLabel, userScoreView)
         
         backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.9)
         layer.cornerRadius = 10
@@ -70,10 +70,11 @@ class MNMovieInfoView: UIView {
             userScoreTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             userScoreTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             
-            userScoreLabel.topAnchor.constraint(equalTo: userScoreTitleLabel.bottomAnchor, constant: 3),
-            userScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            userScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            userScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
+            userScoreView.topAnchor.constraint(equalTo: userScoreTitleLabel.bottomAnchor, constant: 7),
+            userScoreView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            userScoreView.widthAnchor.constraint(equalToConstant: 50),
+            userScoreView.heightAnchor.constraint(equalToConstant: 50),
+            userScoreView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
         ])
     }
     
@@ -82,8 +83,8 @@ class MNMovieInfoView: UIView {
         dateLabel.text = movie.formattedDate
         overviewLabel.text = movie.description
         genreLabel.text = movie.genresString
-        let userScore = Int(movie.voteAverage / 10 * 100)
-        userScoreLabel.text = "\(userScore)%"
+        let rating = Int(movie.voteAverage * 10)
+        userScoreView.set(rating: rating)
     }
     
 }
