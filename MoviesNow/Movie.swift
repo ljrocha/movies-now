@@ -17,7 +17,6 @@ struct Movie: Decodable, Hashable {
     let title: String
     let description: String
     let releaseDate: String
-    let adult: Bool
     let genres: [Int]
     let posterImagePath: String?
     let backdropImagePath: String?
@@ -33,7 +32,6 @@ struct Movie: Decodable, Hashable {
         case title
         case description = "overview"
         case releaseDate = "release_date"
-        case adult
         case genres = "genre_ids"
         case posterImagePath = "poster_path"
         case backdropImagePath = "backdrop_path"
