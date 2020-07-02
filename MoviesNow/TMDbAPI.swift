@@ -24,6 +24,12 @@ enum BackdropSize: String {
     case large = "w1280"
 }
 
+enum ProfileSize: String {
+    case small = "w45"
+    case medium = "w185"
+    case large = "h632"
+}
+
 struct TMDbAPI {
     
     private static let movieBaseURLString = "https://api.themoviedb.org/3/"
@@ -55,6 +61,25 @@ struct TMDbAPI {
         return components.url!
     }
     
+    private static func castMembersURL(movieID: Int) -> URL {
+        var components = URLComponents(string: movieBaseURLString + "movie/\(movieID)/credits")!
+        
+        var queryItems = [URLQueryItem]()
+        
+        let baseParameters = [
+            "api_key": apiKey
+        ]
+        
+        for (key, value) in baseParameters {
+            let item = URLQueryItem(name: key, value: value)
+            queryItems.append(item)
+        }
+        
+        components.queryItems = queryItems
+        
+        return components.url!
+    }
+    
     static var nowPlayingMoviesURL: URL {
         return movieURL(endpoint: .nowPlaying, parameters: nil)
     }
@@ -66,4 +91,13 @@ struct TMDbAPI {
     static func backdropURL(path: String, size: BackdropSize) -> URL {
         return URL(string: imageBaseURLString + size.rawValue + path)!
     }
+    
+    static func movieCastMemberProfileURL(path: String, size: ProfileSize) -> URL {
+        return URL(string: imageBaseURLString + size.rawValue + path)!
+    }
+    
+    static func movieCastMembersURL(movieID: Int) -> URL {
+        return castMembersURL(movieID: movieID)
+    }
+    
 }

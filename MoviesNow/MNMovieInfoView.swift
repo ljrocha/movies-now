@@ -31,11 +31,11 @@ class MNMovieInfoView: UIView {
         addSubview(overviewLabel)
         addSubview(descriptionLabel)
         
-        backgroundColor = .secondarySystemBackground
+        backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.9)
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
