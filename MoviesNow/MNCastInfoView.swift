@@ -48,7 +48,7 @@ class MNCastInfoView: UIView {
             castLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             castLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             
-            castMembersLabel.topAnchor.constraint(equalTo: castLabel.bottomAnchor),
+            castMembersLabel.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 3),
             castMembersLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             castMembersLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             castMembersLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
