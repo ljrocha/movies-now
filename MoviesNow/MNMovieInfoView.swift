@@ -81,7 +81,7 @@ class MNMovieInfoView: UIView {
     
     func set(movie: Movie) {
         titleLabel.text = movie.title
-        dateLabel.text = movie.releaseDate
+        dateLabel.text = movie.formattedDate
         descriptionLabel.text = movie.description
     }
     

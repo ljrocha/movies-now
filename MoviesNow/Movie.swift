@@ -27,6 +27,10 @@ struct Movie: Decodable, Hashable {
             .joined(separator: genres.count == 2 ? " & " : ", ")
     }
     
+    var formattedDate: String {
+        return releaseDate.convertToDisplayFormat()
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title
