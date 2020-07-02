@@ -47,8 +47,8 @@ class MovieDetailViewController: UIViewController {
             switch result {
             case .success(let castMembers):
                 DispatchQueue.main.async {
-                    self.castMembers = castMembers.filter { $0.profilePath != nil }
-                    self.castInfoView.set(castMembers: self.castMembers)
+                    self.castMembers = castMembers
+                    self.castInfoView.set(castMembers: castMembers)
                 }
             case .failure(let error):
                 // Handle error
