@@ -16,6 +16,8 @@ class MNMovieInfoView: UIView {
     let overviewLabel = MNLabel(textStyle: .body)
     let genreTitleLabel = MNLabel(textStyle: .headline)
     let genreLabel = MNLabel(textStyle: .body)
+    let userScoreTitleLabel = MNLabel(textStyle: .headline)
+    let userScoreLabel = MNLabel(textStyle: .body)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +30,7 @@ class MNMovieInfoView: UIView {
     }
     
     private func configure() {
-        addSubviews(titleLabel, dateLabel, overviewTitleLabel, overviewLabel, genreTitleLabel, genreLabel)
+        addSubviews(titleLabel, dateLabel, overviewTitleLabel, overviewLabel, genreTitleLabel, genreLabel, userScoreTitleLabel, userScoreLabel)
         
         backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.9)
         layer.cornerRadius = 10
@@ -36,6 +38,7 @@ class MNMovieInfoView: UIView {
         
         overviewTitleLabel.text = "Overview"
         genreTitleLabel.text = "Genre"
+        userScoreTitleLabel.text = "User Score"
         
         let padding: CGFloat = 15
         NSLayoutConstraint.activate([
@@ -62,7 +65,15 @@ class MNMovieInfoView: UIView {
             genreLabel.topAnchor.constraint(equalTo: genreTitleLabel.bottomAnchor, constant: 3),
             genreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             genreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            genreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
+            
+            userScoreTitleLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 10),
+            userScoreTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            userScoreTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            
+            userScoreLabel.topAnchor.constraint(equalTo: userScoreTitleLabel.bottomAnchor, constant: 3),
+            userScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            userScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            userScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
         ])
     }
     
@@ -71,6 +82,8 @@ class MNMovieInfoView: UIView {
         dateLabel.text = movie.formattedDate
         overviewLabel.text = movie.description
         genreLabel.text = movie.genresString
+        let userScore = Int(movie.voteAverage / 10 * 100)
+        userScoreLabel.text = "\(userScore)%"
     }
     
 }
