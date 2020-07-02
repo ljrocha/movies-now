@@ -9,7 +9,7 @@
 import Foundation
 
 enum Endpoint: String {
-    case nowPlaying = "movie/now_playing"
+    case movies = "movie/"
 }
 
 enum PosterSize: String {
@@ -24,20 +24,15 @@ enum BackdropSize: String {
     case large = "w1280"
 }
 
-enum ProfileSize: String {
-    case small = "w45"
-    case medium = "w185"
-    case large = "h632"
-}
-
 struct TMDbAPI {
     
-    private static let movieBaseURLString = "https://api.themoviedb.org/3/"
+    private static let baseURLString = "https://api.themoviedb.org/3/"
     private static let imageBaseURLString = "https://image.tmdb.org/t/p/"
     private static let apiKey = "d9849a7a8ca5063953c590dc110d6874"
     
-    private static func movieURL(endpoint: Endpoint, parameters: [String: String]?) -> URL {
-        var components = URLComponents(string: movieBaseURLString + endpoint.rawValue)!
+    private static func url(for endpoint: Endpoint, appendingPath path: String?, parameters: [String: String]? = nil) -> URL {
+        let path = path ?? ""
+        var components = URLComponents(string: baseURLString + endpoint.rawValue + path)!
         
         var queryItems = [URLQueryItem]()
         
@@ -61,27 +56,8 @@ struct TMDbAPI {
         return components.url!
     }
     
-    private static func castMembersURL(movieID: Int) -> URL {
-        var components = URLComponents(string: movieBaseURLString + "movie/\(movieID)/credits")!
-        
-        var queryItems = [URLQueryItem]()
-        
-        let baseParameters = [
-            "api_key": apiKey
-        ]
-        
-        for (key, value) in baseParameters {
-            let item = URLQueryItem(name: key, value: value)
-            queryItems.append(item)
-        }
-        
-        components.queryItems = queryItems
-        
-        return components.url!
-    }
-    
     static var nowPlayingMoviesURL: URL {
-        return movieURL(endpoint: .nowPlaying, parameters: nil)
+        return url(for: .movies, appendingPath: "now_playing")
     }
     
     static func posterURL(path: String, size: PosterSize) -> URL {
@@ -92,12 +68,8 @@ struct TMDbAPI {
         return URL(string: imageBaseURLString + size.rawValue + path)!
     }
     
-    static func movieCastMemberProfileURL(path: String, size: ProfileSize) -> URL {
-        return URL(string: imageBaseURLString + size.rawValue + path)!
-    }
-    
     static func movieCastMembersURL(movieID: Int) -> URL {
-        return castMembersURL(movieID: movieID)
+        return url(for: .movies, appendingPath: "\(movieID)/credits")
     }
     
 }

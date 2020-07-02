@@ -46,66 +46,6 @@ class MovieStore {
         task.resume()
     }
     
-    func fetchPosterImage(for movie: Movie, size: PosterSize, completion: @escaping (UIImage?) -> Void) {
-        guard let posterImagePath = movie.posterImagePath else {
-            completion(nil)
-            return
-        }
-        
-        let imageURL = TMDbAPI.posterURL(path: posterImagePath, size: size)
-        let cacheKey = NSString(string: imageURL.absoluteString)
-        
-        if let image = imageCache.object(forKey: cacheKey) {
-            completion(image)
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: imageURL) { [weak self] data, response, error in
-            guard let self = self,
-                error == nil,
-                let response = response as? HTTPURLResponse, response.statusCode == 200,
-                let data = data,
-                let image = UIImage(data: data) else {
-                    completion(nil)
-                    return
-            }
-            
-            self.imageCache.setObject(image, forKey: cacheKey)
-            completion(image)
-        }
-        task.resume()
-    }
-    
-    func fetchBackdropImage(for movie: Movie, size: BackdropSize, completion: @escaping (UIImage?) -> Void) {
-        guard let backdropImagePath = movie.backdropImagePath else {
-            completion(nil)
-            return
-        }
-        
-        let imageURL = TMDbAPI.backdropURL(path: backdropImagePath, size: size)
-        let cacheKey = NSString(string: imageURL.absoluteString)
-        
-        if let image = imageCache.object(forKey: cacheKey) {
-            completion(image)
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: imageURL) { [weak self] data, response, error in
-            guard let self = self,
-                error == nil,
-                let response = response as? HTTPURLResponse, response.statusCode == 200,
-                let data = data,
-                let image = UIImage(data: data) else {
-                    completion(nil)
-                    return
-            }
-            
-            self.imageCache.setObject(image, forKey: cacheKey)
-            completion(image)
-        }
-        task.resume()
-    }
-    
     func fetchCastMembers(for movie: Movie, completion: @escaping (Result<[CastMember], MNError>) -> Void) {
         let url = TMDbAPI.movieCastMembersURL(movieID: movie.id)
         
@@ -132,6 +72,50 @@ class MovieStore {
             } catch {
                 completion(.failure(.invalidData))
             }
+        }
+        task.resume()
+    }
+    
+    func fetchPosterImage(for movie: Movie, size: PosterSize, completion: @escaping (UIImage?) -> Void) {
+        guard let posterImagePath = movie.posterImagePath else {
+            completion(nil)
+            return
+        }
+        
+        let imageURL = TMDbAPI.posterURL(path: posterImagePath, size: size)
+        fetchImage(url: imageURL, completion: completion)
+    }
+    
+    func fetchBackdropImage(for movie: Movie, size: BackdropSize, completion: @escaping (UIImage?) -> Void) {
+        guard let backdropImagePath = movie.backdropImagePath else {
+            completion(nil)
+            return
+        }
+        
+        let imageURL = TMDbAPI.backdropURL(path: backdropImagePath, size: size)
+        fetchImage(url: imageURL, completion: completion)
+    }
+    
+    private func fetchImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        let cacheKey = NSString(string: url.absoluteString)
+        
+        if let image = imageCache.object(forKey: cacheKey) {
+            completion(image)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self,
+                error == nil,
+                let response = response as? HTTPURLResponse, response.statusCode == 200,
+                let data = data,
+                let image = UIImage(data: data) else {
+                    completion(nil)
+                    return
+            }
+            
+            self.imageCache.setObject(image, forKey: cacheKey)
+            completion(image)
         }
         task.resume()
     }
