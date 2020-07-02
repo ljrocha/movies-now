@@ -89,8 +89,7 @@ class MovieDetailViewController: UIViewController {
     private func configure() {
         view.addSubview(imageView)
         view.bringSubviewToFront(scrollView)
-        contentView.addSubview(movieInfoView)
-        contentView.addSubview(castInfoView)
+        contentView.addSubviews(movieInfoView, castInfoView)
         
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false

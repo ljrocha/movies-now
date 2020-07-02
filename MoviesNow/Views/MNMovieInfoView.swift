@@ -10,12 +10,12 @@ import UIKit
 
 class MNMovieInfoView: UIView {
     
-    let titleLabel = UILabel(frame: .zero)
-    let dateLabel = UILabel(frame: .zero)
-    let overviewTitleLabel = UILabel(frame: .zero)
-    let overviewLabel = UILabel(frame: .zero)
-    let genreTitleLabel = UILabel(frame: .zero)
-    let genreLabel = UILabel(frame: .zero)
+    let titleLabel = MNLabel(textStyle: .title1, textAlignment: .center)
+    let dateLabel = MNLabel(textStyle: .caption1, textAlignment: .center)
+    let overviewTitleLabel = MNLabel(textStyle: .headline)
+    let overviewLabel = MNLabel(textStyle: .body)
+    let genreTitleLabel = MNLabel(textStyle: .headline)
+    let genreLabel = MNLabel(textStyle: .body)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,50 +28,14 @@ class MNMovieInfoView: UIView {
     }
     
     private func configure() {
-        addSubview(titleLabel)
-        addSubview(dateLabel)
-        addSubview(overviewTitleLabel)
-        addSubview(overviewLabel)
-        addSubview(genreTitleLabel)
-        addSubview(genreLabel)
+        addSubviews(titleLabel, dateLabel, overviewTitleLabel, overviewLabel, genreTitleLabel, genreLabel)
         
         backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.9)
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
-        titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        dateLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-        dateLabel.adjustsFontForContentSizeCategory = true
-        dateLabel.numberOfLines = 0
-        dateLabel.textAlignment = .center
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         overviewTitleLabel.text = "Overview"
-        overviewTitleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        overviewTitleLabel.adjustsFontForContentSizeCategory = true
-        overviewTitleLabel.numberOfLines = 0
-        overviewTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        overviewLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        overviewLabel.adjustsFontForContentSizeCategory = true
-        overviewLabel.numberOfLines = 0
-        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         genreTitleLabel.text = "Genre"
-        genreTitleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        genreTitleLabel.adjustsFontForContentSizeCategory = true
-        genreTitleLabel.numberOfLines = 0
-        genreTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        genreLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        genreLabel.adjustsFontForContentSizeCategory = true
-        genreLabel.numberOfLines = 0
-        genreLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let padding: CGFloat = 15
         NSLayoutConstraint.activate([

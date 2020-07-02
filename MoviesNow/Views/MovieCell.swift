@@ -13,8 +13,8 @@ class MovieCell: UICollectionViewCell {
     static let reuseID = "MovieCell"
     
     let imageView = UIImageView(frame: .zero)
-    let titleLabel = UILabel(frame: .zero)
-    let genreLabel = UILabel(frame: .zero)
+    let titleLabel = MNLabel(fontSize: 12, weight: .semibold, textAlignment: .center)
+    let genreLabel = MNLabel(fontSize: 10, weight: .light, textAlignment: .center)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,21 +40,10 @@ class MovieCell: UICollectionViewCell {
     }
     
     private func configure() {
-        contentView.addSubview(imageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(genreLabel)
+        contentView.addSubviews(imageView, titleLabel, genreLabel)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 0
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        genreLabel.font = UIFont.systemFont(ofSize: 10, weight: .light)
-        genreLabel.textAlignment = .center
+        imageView.translatesAutoresizingMaskIntoConstraints = false        
         genreLabel.numberOfLines = 1
-        genreLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let padding: CGFloat = 0
         NSLayoutConstraint.activate([
