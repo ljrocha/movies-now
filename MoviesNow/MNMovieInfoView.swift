@@ -72,7 +72,7 @@ class MNMovieInfoView: UIView {
             overviewLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             overviewLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             
-            descriptionLabel.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 0),
+            descriptionLabel.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)

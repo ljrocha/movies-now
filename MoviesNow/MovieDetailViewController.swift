@@ -18,7 +18,6 @@ class MovieDetailViewController: UIViewController {
     var castInfoView = MNCastInfoView(frame: .zero)
     
     var movie: Movie!
-    var castMembers: [CastMember] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +46,6 @@ class MovieDetailViewController: UIViewController {
             switch result {
             case .success(let castMembers):
                 DispatchQueue.main.async {
-                    self.castMembers = castMembers
                     self.castInfoView.set(castMembers: castMembers)
                 }
             case .failure(let error):

@@ -25,7 +25,6 @@ class NowPlayingListViewController: UIViewController {
         configureViewController()
         configureCollectionView()
         configureDataSource()
-        
         fetchMovies()
     }
     
