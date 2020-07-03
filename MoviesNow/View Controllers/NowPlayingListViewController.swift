@@ -18,6 +18,9 @@ class NowPlayingListViewController: MNDataLoadingViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
     
     var movies: [Movie] = []
+    var page = 1
+    var hasMoreDataToLoad = true
+    var isLoadingMoreData = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +33,19 @@ class NowPlayingListViewController: MNDataLoadingViewController {
     
     func fetchMovies() {
         showLoadingView()
-        MovieStore.shared.fetchMovies { [weak self] result in
+        MovieStore.shared.fetchMovies(page: page) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
             
+            DispatchQueue.main.async {
+                self.collectionView.refreshControl?.endRefreshing()
+            }
+            
             switch result {
-            case .success(let movies):
+            case .success(let movieResponse):
                 DispatchQueue.main.async {
-                    self.movies = movies
+                    if movieResponse.page >= movieResponse.totalPages { self.hasMoreDataToLoad = false }
+                    self.movies += movieResponse.results
                     self.updateMovies()
                 }
             case .failure(let error):
@@ -74,12 +82,23 @@ class NowPlayingListViewController: MNDataLoadingViewController {
         return flowLayout
     }
     
+    @objc func handleRefreshControl() {
+        page = 1
+        hasMoreDataToLoad = true
+        isLoadingMoreData = false
+        movies.removeAll()
+        fetchMovies()
+    }
+    
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.reuseID)
+        
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
     }
     
     private func configureDataSource() {
@@ -93,6 +112,18 @@ class NowPlayingListViewController: MNDataLoadingViewController {
 }
 
 extension NowPlayingListViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            guard hasMoreDataToLoad, !isLoadingMoreData else { return }
+            page += 1
+            fetchMovies()
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]

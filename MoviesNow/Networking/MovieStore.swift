@@ -16,8 +16,8 @@ class MovieStore {
     
     private init() {}
     
-    func fetchMovies(completion: @escaping (Result<[Movie], MNError>) -> Void) {
-        let url = TMDbAPI.nowPlayingMoviesURL
+    func fetchMovies(page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
+        let url = TMDbAPI.nowPlayingMoviesURL(forPage: page)
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let _ = error {
@@ -38,7 +38,7 @@ class MovieStore {
             do {
                 let decoder = JSONDecoder()
                 let movieResponse = try decoder.decode(MovieResponse.self, from: data)
-                completion(.success(movieResponse.results))
+                completion(.success(movieResponse))
             } catch {
                 completion(.failure(.invalidData))
             }
