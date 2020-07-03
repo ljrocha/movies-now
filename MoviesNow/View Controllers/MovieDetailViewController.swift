@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: MNDataLoadingViewController {
 
     let scrollView = UIScrollView()
     let contentView = UIView()
@@ -40,8 +40,10 @@ class MovieDetailViewController: UIViewController {
     }
     
     func fetchCastMembers() {
+        showLoadingView()
         MovieStore.shared.fetchCastMembers(for: movie) { [weak self] result in
             guard let self = self else { return }
+            self.dismissLoadingView()
             
             switch result {
             case .success(let castMembers):

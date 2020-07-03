@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NowPlayingListViewController: UIViewController {
+class NowPlayingListViewController: MNDataLoadingViewController {
 
     enum Section {
         case main
@@ -29,8 +29,11 @@ class NowPlayingListViewController: UIViewController {
     }
     
     func fetchMovies() {
+        showLoadingView()
         MovieStore.shared.fetchMovies { [weak self] result in
             guard let self = self else { return }
+            self.dismissLoadingView()
+            
             switch result {
             case .success(let movies):
                 DispatchQueue.main.async {
