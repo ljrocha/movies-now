@@ -29,6 +29,7 @@ struct Movie: Decodable, Hashable {
     let posterImagePath: String?
     let backdropImagePath: String?
     let voteAverage: Double
+    let adult: Bool
     
     var genresString: String {
         return genres.compactMap { genresDict[$0] }
@@ -48,6 +49,7 @@ struct Movie: Decodable, Hashable {
         case posterImagePath = "poster_path"
         case backdropImagePath = "backdrop_path"
         case voteAverage = "vote_average"
+        case adult
     }
     
     func hash(into hasher: inout Hasher) {

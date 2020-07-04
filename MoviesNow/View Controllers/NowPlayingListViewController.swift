@@ -45,7 +45,7 @@ class NowPlayingListViewController: MNDataLoadingViewController {
             case .success(let movieResponse):
                 DispatchQueue.main.async {
                     if movieResponse.page >= movieResponse.totalPages { self.hasMoreDataToLoad = false }
-                    self.movies += movieResponse.results
+                    self.movies += movieResponse.results.filter { $0.adult == false }
                     self.updateMovies()
                 }
             case .failure(let error):
@@ -87,6 +87,7 @@ class NowPlayingListViewController: MNDataLoadingViewController {
         hasMoreDataToLoad = true
         isLoadingMoreData = false
         movies.removeAll()
+        updateMovies()
         fetchMovies()
     }
     
