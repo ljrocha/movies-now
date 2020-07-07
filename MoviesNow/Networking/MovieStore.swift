@@ -16,9 +16,17 @@ class MovieStore {
     
     private init() {}
     
-    func fetchMovies(page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
-        let url = TMDbAPI.nowPlayingMoviesURL(forPage: page)
-        
+    func fetchTopRatedMovies(page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
+        let url = TMDbAPI.topRatedMoviesURL(forPage: page)
+        fetchMovies(url: url, completion: completion)
+    }
+    
+    func fetchMovies(forSearchTerm term: String, page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
+        let url = TMDbAPI.movieSearchURL(term: term, forPage: page)
+        fetchMovies(url: url, completion: completion)
+    }
+    
+    private func fetchMovies(url: URL, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let _ = error {
                 completion(.failure(.unableToComplete))

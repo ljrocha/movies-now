@@ -21,6 +21,7 @@ struct MovieResponse: Decodable {
 }
 
 struct Movie: Decodable, Hashable {
+    let uuid = UUID()
     let id: Int
     let title: String
     let description: String

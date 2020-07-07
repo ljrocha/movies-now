@@ -10,6 +10,7 @@ import Foundation
 
 enum Endpoint: String {
     case movies = "movie/"
+    case search = "search/movie"
 }
 
 enum PosterSize: String {
@@ -37,7 +38,8 @@ struct TMDbAPI {
         var queryItems = [URLQueryItem]()
         
         let baseParameters = [
-            "api_key": apiKey
+            "api_key": apiKey,
+            "language": "en-US"
         ]
         
         for (key, value) in baseParameters {
@@ -56,8 +58,12 @@ struct TMDbAPI {
         return components.url!
     }
     
-    static func nowPlayingMoviesURL(forPage page: Int) -> URL {
-        return url(for: .movies, appendingPath: "now_playing", parameters: ["page": String(page)])
+    static func topRatedMoviesURL(forPage page: Int) -> URL {
+        return url(for: .movies, appendingPath: "top_rated", parameters: ["page": String(page)])
+    }
+    
+    static func movieSearchURL(term: String, forPage page: Int) -> URL {
+        return url(for: .search, appendingPath: nil, parameters: ["page": String(page), "query": term, "include_adult": "false"])
     }
     
     static func posterURL(path: String, size: PosterSize) -> URL {
