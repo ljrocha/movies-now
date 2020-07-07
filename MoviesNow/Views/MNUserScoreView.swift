@@ -53,7 +53,16 @@ class MNUserScoreView: UIView {
         // Shape layer
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = UIColor.green.cgColor
+        
+        switch rating {
+        case ..<40:
+            shapeLayer.strokeColor = UIColor.red.cgColor
+        case ..<70:
+            shapeLayer.strokeColor = UIColor.yellow.cgColor
+        default:
+            shapeLayer.strokeColor = UIColor.green.cgColor
+        }
+        
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = 5
         shapeLayer.lineCap = .round

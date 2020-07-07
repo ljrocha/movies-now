@@ -18,7 +18,6 @@ class MovieStore {
     
     func fetchNowPlayingMovies(page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
         let url = TMDbAPI.nowPlayingMoviesURL(forPage: page)
-        print(url.absoluteString)
         fetchMovies(url: url, completion: completion)
     }
     
