@@ -33,7 +33,9 @@ class NowPlayingListViewController: MNDataLoadingViewController {
     
     func fetchMovies() {
         showLoadingView()
-        MovieStore.shared.fetchMovies(page: page) { [weak self] result in
+        isLoadingMoreData = true
+        
+        MovieStore.shared.fetchNowPlayingMovies(page: page) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
             
@@ -45,13 +47,16 @@ class NowPlayingListViewController: MNDataLoadingViewController {
             case .success(let movieResponse):
                 DispatchQueue.main.async {
                     if movieResponse.page >= movieResponse.totalPages { self.hasMoreDataToLoad = false }
-                    self.movies += movieResponse.results.filter { $0.adult == false }
+                    let filteredResults = movieResponse.results.filter { $0.adult == false }
+                    self.movies.append(contentsOf: filteredResults)
                     self.updateMovies()
                 }
             case .failure(let error):
                 // Display error in an alert
                 print(error.rawValue)
             }
+            
+            self.isLoadingMoreData = false
         }
     }
     
@@ -83,11 +88,11 @@ class NowPlayingListViewController: MNDataLoadingViewController {
     }
     
     @objc func handleRefreshControl() {
+        guard !isLoadingMoreData else { return }
+        
         page = 1
         hasMoreDataToLoad = true
-        isLoadingMoreData = false
         movies.removeAll()
-        updateMovies()
         fetchMovies()
     }
     
