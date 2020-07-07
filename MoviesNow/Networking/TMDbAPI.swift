@@ -58,8 +58,8 @@ struct TMDbAPI {
         return components.url!
     }
     
-    static func nowPlayingMoviesURL(forPage page: Int) -> URL {
-        return url(for: .movies, appendingPath: "now_playing", parameters: ["page": String(page)])
+    static func topRatedMoviesURL(forPage page: Int) -> URL {
+        return url(for: .movies, appendingPath: "top_rated", parameters: ["page": String(page)])
     }
     
     static func movieSearchURL(term: String, forPage page: Int) -> URL {

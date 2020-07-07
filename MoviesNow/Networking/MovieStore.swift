@@ -16,8 +16,8 @@ class MovieStore {
     
     private init() {}
     
-    func fetchNowPlayingMovies(page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
-        let url = TMDbAPI.nowPlayingMoviesURL(forPage: page)
+    func fetchTopRatedMovies(page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
+        let url = TMDbAPI.topRatedMoviesURL(forPage: page)
         fetchMovies(url: url, completion: completion)
     }
     

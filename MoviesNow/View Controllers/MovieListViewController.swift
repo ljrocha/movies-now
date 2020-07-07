@@ -41,7 +41,7 @@ class MovieListViewController: MNDataLoadingViewController {
     }
     
     private func configureViewController() {
-        title = "Now Playing"
+        title = "Movie List"
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }

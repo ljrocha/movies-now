@@ -1,5 +1,5 @@
 //
-//  NowPlayingListViewController.swift
+//  TopRatedListViewController.swift
 //  MoviesNow
 //
 //  Created by Leandro Rocha on 6/29/20.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class NowPlayingListViewController: MovieListViewController {
+class TopRatedListViewController: MovieListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Now Playing"
+        title = "Top Rated"
         configureRefreshControl()
     }
     
@@ -21,7 +21,7 @@ class NowPlayingListViewController: MovieListViewController {
         showLoadingView()
         isLoadingMoreData = true
         
-        MovieStore.shared.fetchNowPlayingMovies(page: page) { [weak self] result in
+        MovieStore.shared.fetchTopRatedMovies(page: page) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
             

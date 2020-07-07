@@ -13,14 +13,14 @@ class MNTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewControllers = [createNowPlayingListNavigationController(), createMovieSearchListNavigationController()]
+        viewControllers = [createTopRatedListNavigationController(), createMovieSearchListNavigationController()]
     }
     
-    private func createNowPlayingListNavigationController() -> UINavigationController {
-        let nowPlayingListViewController = NowPlayingListViewController()
-        nowPlayingListViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
+    private func createTopRatedListNavigationController() -> UINavigationController {
+        let topRatedViewController = TopRatedListViewController()
+        topRatedViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
         
-        return UINavigationController(rootViewController: nowPlayingListViewController)
+        return UINavigationController(rootViewController: topRatedViewController)
     }
     
     private func createMovieSearchListNavigationController() -> UINavigationController {
