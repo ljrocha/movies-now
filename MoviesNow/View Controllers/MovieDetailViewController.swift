@@ -57,10 +57,24 @@ class MovieDetailViewController: MNDataLoadingViewController {
         }
     }
     
+    @objc func addTapped() {
+        PersistenceManager.updateWith(favorite: movie, actionType: .add) { [weak self] error in
+            guard let _ = self else { return }
+            
+            guard error == nil else {
+                // Display error
+                return
+            }
+            
+            // Display success
+        }
+    }
+    
     private func configureViewController() {
         title = movie.title
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
     
     private func configureScrollView() {
