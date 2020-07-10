@@ -35,8 +35,7 @@ class FavoritesListViewController: UIViewController {
                 self.favorites = favorites
                 self.tableView.reloadData()
             case .failure(let error):
-                // Display error
-                print(error.rawValue)
+                self.presentAlertOnMainThread(title: "Something went wrong...", message: error.rawValue, buttonTitle: "OK")
             }
         }
     }
@@ -84,8 +83,7 @@ extension FavoritesListViewController: UITableViewDataSource, UITableViewDelegat
             guard let self = self else { return }
             
             guard error == nil else {
-                // Display error
-                print(error!.rawValue)
+                self.presentAlertOnMainThread(title: "Something went wrong...", message: error!.rawValue, buttonTitle: "OK")
                 return
             }
             

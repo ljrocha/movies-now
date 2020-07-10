@@ -51,22 +51,21 @@ class MovieDetailViewController: MNDataLoadingViewController {
                     self.castInfoView.set(castMembers: castMembers)
                 }
             case .failure(let error):
-                // Handle error
-                print(error.rawValue)
+                self.presentAlertOnMainThread(title: "Something went wrong...", message: error.rawValue, buttonTitle: "OK")
             }
         }
     }
     
     @objc func addTapped() {
         PersistenceManager.updateWith(favorite: movie, actionType: .add) { [weak self] error in
-            guard let _ = self else { return }
+            guard let self = self else { return }
             
             guard error == nil else {
-                // Display error
+                self.presentAlertOnMainThread(title: "Something went wrong...", message: error!.rawValue, buttonTitle: "OK")
                 return
             }
             
-            // Display success
+            self.presentAlertOnMainThread(title: "Success!", message: "You have successfully added this movie to your favorites", buttonTitle: "OK")
         }
     }
     
