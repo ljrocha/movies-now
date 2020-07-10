@@ -13,7 +13,7 @@ class MNTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewControllers = [createTopRatedListNavigationController(), createMovieSearchListNavigationController()]
+        viewControllers = [createTopRatedListNavigationController(), createMovieSearchListNavigationController(), createFavoritesListNavigationController()]
     }
     
     private func createTopRatedListNavigationController() -> UINavigationController {
@@ -28,6 +28,13 @@ class MNTabBarController: UITabBarController {
         movieSearchListViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
         
         return UINavigationController(rootViewController: movieSearchListViewController)
+    }
+    
+    private func createFavoritesListNavigationController() -> UINavigationController {
+        let favoritesListViewController = FavoritesListViewController()
+        favoritesListViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        
+        return UINavigationController(rootViewController: favoritesListViewController)
     }
 
 }

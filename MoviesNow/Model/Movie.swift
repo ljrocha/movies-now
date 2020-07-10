@@ -20,7 +20,7 @@ struct MovieResponse: Decodable {
     }
 }
 
-struct Movie: Decodable, Hashable {
+struct Movie: Codable, Hashable {
     let uuid = UUID()
     let id: Int
     let title: String
@@ -55,6 +55,10 @@ struct Movie: Decodable, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
