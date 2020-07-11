@@ -38,8 +38,7 @@ class TopRatedListViewController: MovieListViewController {
                     self.updateMovies()
                 }
             case .failure(let error):
-                // Display error in an alert
-                print(error.rawValue)
+                self.presentAlertOnMainThread(title: "Something went wrong...", message: error.rawValue, buttonTitle: "OK")
             }
             
             self.isLoadingMoreData = false

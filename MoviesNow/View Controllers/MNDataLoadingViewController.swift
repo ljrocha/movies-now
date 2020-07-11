@@ -10,36 +10,49 @@ import UIKit
 
 class MNDataLoadingViewController: UIViewController {
 
-    var containerView: UIView!
+    var loadingView: MNLoadingView!
+    var emptyStateView: MNEmptyStateView!
     
     func showLoadingView() {
-        containerView = UIView(frame: view.bounds)
-        view.addSubview(containerView)
+        loadingView = MNLoadingView(frame: view.bounds)
+        view.addSubview(loadingView)
         
-        containerView.backgroundColor = .systemBackground
-        containerView.alpha = 0
+        loadingView.alpha = 0
         
         UIView.animate(withDuration: 0.25) {
-            self.containerView.alpha = 0.8
+            self.loadingView.alpha = 0.8
         }
+    }
+    
+    func showEmptyStateView(message: String = "") {
+        guard emptyStateView == nil else { return }
         
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        containerView.addSubview(activityIndicator)
+        emptyStateView = MNEmptyStateView(frame: view.bounds)
+        emptyStateView.messageLabel.text = message
+        view.addSubview(emptyStateView)
         
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            activityIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
-        ])
+        emptyStateView.alpha = 0
         
-        activityIndicator.startAnimating()
+        UIView.animate(withDuration: 0.25) {
+            self.emptyStateView.alpha = 0.8
+        }
     }
     
     func dismissLoadingView() {
         DispatchQueue.main.async {
-            self.containerView.removeFromSuperview()
-            self.containerView = nil
+            self.loadingView.removeFromSuperview()
+            self.loadingView = nil
         }
+    }
+    
+    func dismissEmptyStateView() {
+        guard emptyStateView != nil else { return }
+        
+        DispatchQueue.main.async {
+            self.emptyStateView.removeFromSuperview()
+            self.emptyStateView = nil
+        }
+        
     }
     
 }
