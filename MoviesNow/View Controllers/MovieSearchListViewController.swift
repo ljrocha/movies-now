@@ -12,12 +12,19 @@ class MovieSearchListViewController: MovieListViewController {
     
     let searchBar = UISearchBar()
     
+    override var movies: [Movie] {
+        didSet {
+            movies.isEmpty ? showEmptyStateView(message: "Get your search on!") : dismissEmptyStateView()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = ""
         navigationItem.largeTitleDisplayMode = .never
         configureSearchBar()
+        showEmptyStateView(message: "Get your search on!")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

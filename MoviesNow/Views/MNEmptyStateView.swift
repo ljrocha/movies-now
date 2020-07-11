@@ -23,16 +23,10 @@ class MNEmptyStateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(message: String) {
-        self.init(frame: .zero)
-        
-        messageLabel.text = message
-    }
-    
     private func configure() {
         addSubviews(messageLabel, filmImageView)
         
-        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .systemBackground
         
         messageLabel.textColor = .systemGray2
         filmImageView.image = UIImage(systemName: "film")
@@ -43,13 +37,13 @@ class MNEmptyStateView: UIView {
         NSLayoutConstraint.activate([
             filmImageView.widthAnchor.constraint(equalToConstant: 50),
             filmImageView.heightAnchor.constraint(equalToConstant: 50),
-            filmImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            filmImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            filmImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            filmImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             messageLabel.topAnchor.constraint(equalTo: filmImageView.bottomAnchor, constant: padding),
-            messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -padding)
+            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -padding)
         ])
     }
 
