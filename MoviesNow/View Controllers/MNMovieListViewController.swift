@@ -1,5 +1,5 @@
 //
-//  MovieListViewController.swift
+//  MNMovieListViewController.swift
 //  MoviesNow
 //
 //  Created by Leandro Rocha on 7/4/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListViewController: MNDataLoadingViewController {
+class MNMovieListViewController: MNDataLoadingViewController {
     
     enum Section {
         case main
@@ -78,7 +78,7 @@ class MovieListViewController: MNDataLoadingViewController {
     
 }
 
-extension MovieListViewController: UICollectionViewDelegate {
+extension MNMovieListViewController: UICollectionViewDelegate {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY = scrollView.contentOffset.y

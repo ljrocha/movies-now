@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopRatedListViewController: MovieListViewController {
+class TopRatedListViewController: MNMovieListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

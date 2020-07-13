@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieSearchListViewController: MovieListViewController {
+class MovieSearchListViewController: MNMovieListViewController {
     
     let searchBar = UISearchBar()
     
