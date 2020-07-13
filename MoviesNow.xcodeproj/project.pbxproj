@@ -32,7 +32,7 @@
 		46A7EEFA24B12576003A3C78 /* MovieSearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A7EEF924B12576003A3C78 /* MovieSearchListViewController.swift */; };
 		46F9B8C724AE608400732189 /* MNLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8C624AE608400732189 /* MNLabel.swift */; };
 		46F9B8C924AE718500732189 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8C824AE718500732189 /* UIView+Ext.swift */; };
-		46F9B8CB24AE823F00732189 /* MNUserScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8CA24AE823F00732189 /* MNUserScoreView.swift */; };
+		46F9B8CB24AE823F00732189 /* MNUserScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8CA24AE823F00732189 /* MNUserScoreLabel.swift */; };
 		46F9B8CD24AEAA5700732189 /* MNDataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8CC24AEAA5700732189 /* MNDataLoadingViewController.swift */; };
 		46FD4C5324B8E0CC00580493 /* MNEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD4C5224B8E0CC00580493 /* MNEmptyStateView.swift */; };
 		46FD4C5524B92C1200580493 /* MNLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD4C5424B92C1200580493 /* MNLoadingView.swift */; };
@@ -66,7 +66,7 @@
 		46A7EEF924B12576003A3C78 /* MovieSearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchListViewController.swift; sourceTree = "<group>"; };
 		46F9B8C624AE608400732189 /* MNLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNLabel.swift; sourceTree = "<group>"; };
 		46F9B8C824AE718500732189 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		46F9B8CA24AE823F00732189 /* MNUserScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNUserScoreView.swift; sourceTree = "<group>"; };
+		46F9B8CA24AE823F00732189 /* MNUserScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNUserScoreLabel.swift; sourceTree = "<group>"; };
 		46F9B8CC24AEAA5700732189 /* MNDataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNDataLoadingViewController.swift; sourceTree = "<group>"; };
 		46FD4C5224B8E0CC00580493 /* MNEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNEmptyStateView.swift; sourceTree = "<group>"; };
 		46FD4C5424B92C1200580493 /* MNLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNLoadingView.swift; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				4603D81624ACFC54005DEDF0 /* MNMovieInfoView.swift */,
-				46F9B8CA24AE823F00732189 /* MNUserScoreView.swift */,
+				46F9B8CA24AE823F00732189 /* MNUserScoreLabel.swift */,
 				4603D81E24AD60C8005DEDF0 /* MNCastInfoView.swift */,
 				46F9B8C624AE608400732189 /* MNLabel.swift */,
 				463898BD24AB03D9001446DF /* MovieCell.swift */,
@@ -274,7 +274,7 @@
 				46F9B8CD24AEAA5700732189 /* MNDataLoadingViewController.swift in Sources */,
 				465C91AA24B6417E00F723F9 /* FavoritesListViewController.swift in Sources */,
 				46FD4C5324B8E0CC00580493 /* MNEmptyStateView.swift in Sources */,
-				46F9B8CB24AE823F00732189 /* MNUserScoreView.swift in Sources */,
+				46F9B8CB24AE823F00732189 /* MNUserScoreLabel.swift in Sources */,
 				4603D81924AD15D9005DEDF0 /* CastMember.swift in Sources */,
 				4652386424AC0987001F3FE8 /* TMDbAPI.swift in Sources */,
 				465C91AC24B656DA00F723F9 /* FavoriteCell.swift in Sources */,
