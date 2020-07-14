@@ -31,7 +31,7 @@ class MNCastInfoViewController: MNDataLoadingViewController {
             switch result {
             case .success(let castMembers):
                 DispatchQueue.main.async {
-                    self.castMembersLabel.text = castMembers.map { $0.name }
+                    self.castMembersLabel.text = castMembers.isEmpty ? "N/A" : castMembers.map { $0.name }
                         .joined(separator: "\n")
                 }
             case .failure(let error):
