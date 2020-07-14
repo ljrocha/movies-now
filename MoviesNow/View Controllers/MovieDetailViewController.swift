@@ -76,7 +76,7 @@ class MovieDetailViewController: MNDataLoadingViewController {
         stackView.axis = .vertical
         stackView.spacing = 10
         
-        scrollView.contentInset = UIEdgeInsets(top: view.frame.width / 2, left: 0, bottom: 0, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: view.frame.width / 2, left: 0, bottom: 10, right: 0)
         scrollView.showsVerticalScrollIndicator = false
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
