@@ -104,11 +104,11 @@ class MovieDetailViewController: MNDataLoadingViewController {
         stackView.addArrangedSubview(movieInfoViewController.view)
         movieInfoViewController.didMove(toParent: self)
         
-        let movieCastViewController = MNMovieCastViewController()
-        movieCastViewController.movie = movie
-        addChild(movieCastViewController)
-        stackView.addArrangedSubview(movieCastViewController.view)
-        movieCastViewController.didMove(toParent: self)
+        let castInfoViewController = MNCastInfoViewController()
+        castInfoViewController.movie = movie
+        addChild(castInfoViewController)
+        stackView.addArrangedSubview(castInfoViewController.view)
+        castInfoViewController.didMove(toParent: self)
     }
     
 }

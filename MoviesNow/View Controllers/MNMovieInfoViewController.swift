@@ -74,10 +74,13 @@ class MNMovieInfoViewController: UIViewController {
     private func setupUI() {
         titleLabel.text = movie.title
         dateLabel.text = movie.formattedDate
+        
         overviewTitleLabel.text = "Overview"
         overviewLabel.text = movie.description
+        
         genreTitleLabel.text = "Genre"
         genreLabel.text = movie.genresString
+        
         userScoreTitleLabel.text = "User Score"
         let rating = Int(movie.voteAverage * 10)
         userScoreLabel.set(rating: rating)

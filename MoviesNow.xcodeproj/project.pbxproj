@@ -32,7 +32,7 @@
 		46F9B8C924AE718500732189 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8C824AE718500732189 /* UIView+Ext.swift */; };
 		46F9B8CB24AE823F00732189 /* MNUserScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8CA24AE823F00732189 /* MNUserScoreLabel.swift */; };
 		46F9B8CD24AEAA5700732189 /* MNDataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9B8CC24AEAA5700732189 /* MNDataLoadingViewController.swift */; };
-		46FC5B1224BD15B100BCAF6B /* MNMovieCastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC5B1124BD15B100BCAF6B /* MNMovieCastViewController.swift */; };
+		46FC5B1224BD15B100BCAF6B /* MNCastInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC5B1124BD15B100BCAF6B /* MNCastInfoViewController.swift */; };
 		46FC5B1424BD360E00BCAF6B /* MNMovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC5B1324BD360E00BCAF6B /* MNMovieInfoViewController.swift */; };
 		46FD4C5324B8E0CC00580493 /* MNEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD4C5224B8E0CC00580493 /* MNEmptyStateView.swift */; };
 		46FD4C5524B92C1200580493 /* MNLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD4C5424B92C1200580493 /* MNLoadingView.swift */; };
@@ -66,7 +66,7 @@
 		46F9B8C824AE718500732189 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		46F9B8CA24AE823F00732189 /* MNUserScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNUserScoreLabel.swift; sourceTree = "<group>"; };
 		46F9B8CC24AEAA5700732189 /* MNDataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNDataLoadingViewController.swift; sourceTree = "<group>"; };
-		46FC5B1124BD15B100BCAF6B /* MNMovieCastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNMovieCastViewController.swift; sourceTree = "<group>"; };
+		46FC5B1124BD15B100BCAF6B /* MNCastInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNCastInfoViewController.swift; sourceTree = "<group>"; };
 		46FC5B1324BD360E00BCAF6B /* MNMovieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNMovieInfoViewController.swift; sourceTree = "<group>"; };
 		46FD4C5224B8E0CC00580493 /* MNEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNEmptyStateView.swift; sourceTree = "<group>"; };
 		46FD4C5424B92C1200580493 /* MNLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNLoadingView.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				46A7EEF724B12256003A3C78 /* MNMovieListViewController.swift */,
 				46A7EEF524B0F9D9003A3C78 /* MNTabBarController.swift */,
 				46FC5B1324BD360E00BCAF6B /* MNMovieInfoViewController.swift */,
-				46FC5B1124BD15B100BCAF6B /* MNMovieCastViewController.swift */,
+				46FC5B1124BD15B100BCAF6B /* MNCastInfoViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -258,7 +258,7 @@
 				46FD4C5524B92C1200580493 /* MNLoadingView.swift in Sources */,
 				46F9B8C924AE718500732189 /* UIView+Ext.swift in Sources */,
 				463898BA24AAFC80001446DF /* TopRatedListViewController.swift in Sources */,
-				46FC5B1224BD15B100BCAF6B /* MNMovieCastViewController.swift in Sources */,
+				46FC5B1224BD15B100BCAF6B /* MNCastInfoViewController.swift in Sources */,
 				4603D82324AD8B09005DEDF0 /* Date+Ext.swift in Sources */,
 				46A7EEFA24B12576003A3C78 /* MovieSearchListViewController.swift in Sources */,
 				463898A624AAF83B001446DF /* AppDelegate.swift in Sources */,

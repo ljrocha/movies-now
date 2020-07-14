@@ -1,5 +1,5 @@
 //
-//  MNMovieCastViewController.swift
+//  MNCastInfoViewController.swift
 //  MoviesNow
 //
 //  Created by Leandro Rocha on 7/13/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MNMovieCastViewController: MNDataLoadingViewController {
+class MNCastInfoViewController: MNDataLoadingViewController {
 
     let castTitleLabel = MNLabel(textStyle: .headline)
     let castMembersLabel = MNLabel(textStyle: .body)
@@ -20,6 +20,24 @@ class MNMovieCastViewController: MNDataLoadingViewController {
 
         configure()
         fetchCastMembers()
+    }
+    
+    func fetchCastMembers() {
+        showLoadingView()
+        MovieStore.shared.fetchCastMembers(for: movie) { [weak self] result in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+            case .success(let castMembers):
+                DispatchQueue.main.async {
+                    self.castMembersLabel.text = castMembers.map { $0.name }
+                        .joined(separator: "\n")
+                }
+            case .failure(let error):
+                self.presentAlertOnMainThread(title: "Something went wrong...", message: error.rawValue, buttonTitle: "OK")
+            }
+        }
     }
     
     private func configure() {
@@ -40,28 +58,6 @@ class MNMovieCastViewController: MNDataLoadingViewController {
             castMembersLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             castMembersLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
         ])
-    }
-    
-    func fetchCastMembers() {
-        showLoadingView()
-        MovieStore.shared.fetchCastMembers(for: movie) { [weak self] result in
-            guard let self = self else { return }
-            self.dismissLoadingView()
-            
-            switch result {
-            case .success(let castMembers):
-                DispatchQueue.main.async {
-                    self.set(castMembers: castMembers)
-                }
-            case .failure(let error):
-                self.presentAlertOnMainThread(title: "Something went wrong...", message: error.rawValue, buttonTitle: "OK")
-            }
-        }
-    }
-    
-    func set(castMembers: [CastMember]) {
-        castMembersLabel.text = castMembers.map { $0.name }
-            .joined(separator: "\n")
     }
 
 }
