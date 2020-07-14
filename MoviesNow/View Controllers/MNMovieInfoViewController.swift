@@ -82,8 +82,7 @@ class MNMovieInfoViewController: UIViewController {
         genreLabel.text = movie.genresString
         
         userScoreTitleLabel.text = "User Score"
-        let rating = Int(movie.voteAverage * 10)
-        userScoreLabel.set(rating: rating)
+        userScoreLabel.set(rating: movie.ratingPercentage)
     }
 
 }
