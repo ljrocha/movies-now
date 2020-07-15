@@ -9,25 +9,29 @@
 import UIKit
 
 class MovieDetailViewController: MNDataLoadingViewController {
-
+    
+    // MARK: - Properties
+    
     let scrollView = UIScrollView()
-    let contentView = UIView()
+    let stackView = UIStackView()
     
     let imageView = UIImageView(frame: .zero)
-    let movieInfoView = MNMovieInfoView(frame: .zero)
-    var castInfoView = MNCastInfoView(frame: .zero)
     
     var movie: Movie!
     
+    // MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureViewController()
+        configureImageView()
         configureScrollView()
-        configure()
         fetchMovieBackdropImage()
-        fetchCastMembers()
+        setupUI()
     }
+    
+    // MARK: - Methods
     
     func fetchMovieBackdropImage() {
         MovieStore.shared.fetchBackdropImage(for: movie, size: .large) { [weak self] image in
@@ -35,23 +39,6 @@ class MovieDetailViewController: MNDataLoadingViewController {
             
             DispatchQueue.main.async {
                 self.imageView.image = image
-            }
-        }
-    }
-    
-    func fetchCastMembers() {
-        showLoadingView()
-        MovieStore.shared.fetchCastMembers(for: movie) { [weak self] result in
-            guard let self = self else { return }
-            self.dismissLoadingView()
-            
-            switch result {
-            case .success(let castMembers):
-                DispatchQueue.main.async {
-                    self.castInfoView.set(castMembers: castMembers)
-                }
-            case .failure(let error):
-                self.presentAlertOnMainThread(title: "Something went wrong...", message: error.rawValue, buttonTitle: "OK")
             }
         }
     }
@@ -69,6 +56,8 @@ class MovieDetailViewController: MNDataLoadingViewController {
         }
     }
     
+    // MARK: - Private methods
+    
     private func configureViewController() {
         title = movie.title
         view.backgroundColor = .systemBackground
@@ -76,15 +65,30 @@ class MovieDetailViewController: MNDataLoadingViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
     
+    private func configureImageView() {
+        view.addSubview(imageView)
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.5),
+        ])
+    }
+    
     private func configureScrollView() {
         view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
+        scrollView.addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.spacing = 10
         
-        scrollView.contentInset = UIEdgeInsets(top: view.frame.width / 2, left: 0, bottom: 0, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: view.frame.width / 2, left: 0, bottom: 10, right: 0)
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -92,40 +96,27 @@ class MovieDetailViewController: MNDataLoadingViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.95),
+            stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
     }
     
-    private func configure() {
-        view.addSubview(imageView)
-        view.bringSubviewToFront(scrollView)
-        contentView.addSubviews(movieInfoView, castInfoView)
+    private func setupUI() {
+        let movieInfoViewController = MNMovieInfoViewController()
+        movieInfoViewController.movie = movie
+        addChild(movieInfoViewController)
+        stackView.addArrangedSubview(movieInfoViewController.view)
+        movieInfoViewController.didMove(toParent: self)
         
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let padding: CGFloat = 10
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.5),
-            
-            movieInfoView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            movieInfoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            movieInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            
-            castInfoView.topAnchor.constraint(equalTo: movieInfoView.bottomAnchor, constant: padding * 2),
-            castInfoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            castInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            castInfoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
-        ])
-        
-        movieInfoView.set(movie: movie)
+        let castInfoViewController = MNCastInfoViewController()
+        castInfoViewController.movie = movie
+        addChild(castInfoViewController)
+        stackView.addArrangedSubview(castInfoViewController.view)
+        castInfoViewController.didMove(toParent: self)
     }
-
+    
 }

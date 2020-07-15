@@ -10,8 +10,12 @@ import UIKit
 
 class MNLoadingView: UIView {
     
+    // MARK: - Properties
+    
     let activityIndicator = UIActivityIndicatorView(style: .large)
 
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,6 +25,8 @@ class MNLoadingView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         addSubview(activityIndicator)

@@ -10,13 +10,17 @@ import UIKit
 
 class FavoriteCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     static let reuseID = "FavoriteCell"
     
-    let movieImageView = UIImageView(frame: .zero)
-    let titleLabel = MNLabel(fontSize: 18, weight: .semibold)
-    let genreLabel = MNLabel(fontSize: 10, weight: .light)
-    let dateLabel = MNLabel(fontSize: 10, weight: .light)
-    let descriptionLabel = MNLabel(fontSize: 12, weight: .regular)
+    let movieImageView = MNMovieImageView(frame: .zero)
+    let titleLabel = MNLabel(textStyle: .headline)
+    let genreLabel = MNLabel(textStyle: .caption2)
+    let dateLabel = MNLabel(textStyle: .caption2)
+    let descriptionLabel = MNLabel(textStyle: .body)
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,6 +31,8 @@ class FavoriteCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Methods
     
     func set(movie: Movie) {
         titleLabel.text = movie.title
@@ -43,14 +49,14 @@ class FavoriteCell: UITableViewCell {
         }
     }
     
+    // MARK: - Private methods
+    
     private func configure() {
-        contentView.addSubviews(movieImageView, titleLabel, genreLabel, dateLabel, descriptionLabel)
+        let innerStackView = MNStackView(arrangedSubviews: [titleLabel, genreLabel, dateLabel])
+        let outerStackView = MNStackView(arrangedSubviews: [innerStackView, descriptionLabel])
+        contentView.addSubviews(movieImageView, outerStackView)
         
-        movieImageView.layer.borderColor = UIColor.systemGray.cgColor
-        movieImageView.layer.borderWidth = 0.5
-        movieImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        descriptionLabel.numberOfLines = 3
+        descriptionLabel.numberOfLines = 2
         
         let padding: CGFloat = 12
         NSLayoutConstraint.activate([
@@ -61,25 +67,10 @@ class FavoriteCell: UITableViewCell {
             movieImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: padding),
             movieImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -padding),
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 1.5),
-            titleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            titleLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            genreLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: padding),
-            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            genreLabel.heightAnchor.constraint(equalToConstant: 14),
-            
-            dateLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor),
-            dateLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: padding),
-            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            dateLabel.heightAnchor.constraint(equalToConstant: 14),
-            
-            descriptionLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.centerYAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: padding),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -(padding * 1.5))
+            outerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 1.5),
+            outerStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: padding),
+            outerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            outerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -(padding * 1.5))
         ])
     }
 

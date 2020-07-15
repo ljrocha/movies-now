@@ -1,5 +1,5 @@
 //
-//  MNUserScoreView.swift
+//  MNUserScoreLabel.swift
 //  MoviesNow
 //
 //  Created by Leandro Rocha on 7/2/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MNUserScoreView: UIView {
+class MNUserScoreLabel: UILabel {
     
-    let userScoreLabel = MNLabel(fontSize: 12, weight: .medium)
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,21 +22,10 @@ class MNUserScoreView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
-        addSubview(userScoreLabel)
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        let padding: CGFloat = 10
-        NSLayoutConstraint.activate([
-            userScoreLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            userScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            userScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            userScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
-        ])
-    }
+    // MARK: - Methods
     
     func set(rating: Int) {
-        userScoreLabel.text = " \(rating)%"
+        text = " \(rating)%"
         
         let center = CGPoint(x: 25, y: 25)
         let circularPath = UIBezierPath(arcCenter: center, radius: 25, startAngle: -CGFloat.pi / 2, endAngle: 1.5 * CGFloat.pi, clockwise: true)
@@ -53,16 +42,7 @@ class MNUserScoreView: UIView {
         // Shape layer
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circularPath.cgPath
-        
-        switch rating {
-        case ..<40:
-            shapeLayer.strokeColor = UIColor.red.cgColor
-        case ..<70:
-            shapeLayer.strokeColor = UIColor.yellow.cgColor
-        default:
-            shapeLayer.strokeColor = UIColor.green.cgColor
-        }
-        
+        shapeLayer.strokeColor = strokeColor(forRating: rating)
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = 5
         shapeLayer.lineCap = .round
@@ -76,6 +56,25 @@ class MNUserScoreView: UIView {
         basicAnimation.isRemovedOnCompletion = false
         
         shapeLayer.add(basicAnimation, forKey: "basic")
+    }
+    
+    // MARK: - Private methods
+    
+    private func configure() {
+        font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        textAlignment = .center
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func strokeColor(forRating rating: Int) -> CGColor {
+        switch rating {
+        case ..<40:
+            return UIColor.red.cgColor
+        case ..<70:
+            return UIColor.yellow.cgColor
+        default:
+            return UIColor.green.cgColor
+        }
     }
 
 }

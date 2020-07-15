@@ -1,5 +1,5 @@
 //
-//  MovieListViewController.swift
+//  MNMovieListViewController.swift
 //  MoviesNow
 //
 //  Created by Leandro Rocha on 7/4/20.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class MovieListViewController: MNDataLoadingViewController {
+class MNMovieListViewController: MNDataLoadingViewController {
     
     enum Section {
         case main
     }
+    
+    // MARK: - Properties
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
@@ -21,6 +23,8 @@ class MovieListViewController: MNDataLoadingViewController {
     var page = 1
     var hasMoreDataToLoad = true
     var isLoadingMoreData = false
+    
+    // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,8 @@ class MovieListViewController: MNDataLoadingViewController {
         fetchMovies()
     }
     
+    // MARK: - Methods
+    
     func fetchMovies() {}
     
     func updateMovies() {
@@ -39,6 +45,8 @@ class MovieListViewController: MNDataLoadingViewController {
         snapshot.appendItems(movies)
         dataSource.apply(snapshot)
     }
+    
+    // MARK: - Private methods
     
     private func configureViewController() {
         title = "Movie List"
@@ -78,7 +86,9 @@ class MovieListViewController: MNDataLoadingViewController {
     
 }
 
-extension MovieListViewController: UICollectionViewDelegate {
+// MARK: - Collection view delegate
+
+extension MNMovieListViewController: UICollectionViewDelegate {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY = scrollView.contentOffset.y

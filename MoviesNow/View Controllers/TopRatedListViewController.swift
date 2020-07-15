@@ -8,7 +8,9 @@
 
 import UIKit
 
-class TopRatedListViewController: MovieListViewController {
+class TopRatedListViewController: MNMovieListViewController {
+    
+    // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +18,8 @@ class TopRatedListViewController: MovieListViewController {
         title = "Top Rated"
         configureRefreshControl()
     }
+    
+    // MARK: - Methods
     
     override func fetchMovies() {
         showLoadingView()
@@ -53,6 +57,8 @@ class TopRatedListViewController: MovieListViewController {
         movies.removeAll()
         fetchMovies()
     }
+    
+    // MARK: - Private methods
     
     private func configureRefreshControl() {
         collectionView.refreshControl = UIRefreshControl()

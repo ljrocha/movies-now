@@ -10,17 +10,21 @@ import UIKit
 
 class MNTabBarController: UITabBarController {
 
+    // MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         viewControllers = [createTopRatedListNavigationController(), createMovieSearchListNavigationController(), createFavoritesListNavigationController()]
     }
     
+    // MARK: - Private methods
+    
     private func createTopRatedListNavigationController() -> UINavigationController {
-        let topRatedViewController = TopRatedListViewController()
-        topRatedViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
+        let topRatedListViewController = TopRatedListViewController()
+        topRatedListViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
         
-        return UINavigationController(rootViewController: topRatedViewController)
+        return UINavigationController(rootViewController: topRatedListViewController)
     }
     
     private func createMovieSearchListNavigationController() -> UINavigationController {

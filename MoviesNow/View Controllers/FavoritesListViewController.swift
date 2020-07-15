@@ -10,12 +10,16 @@ import UIKit
 
 class FavoritesListViewController: MNDataLoadingViewController {
     
+    // MARK: - Properties
+    
     let tableView = UITableView()
     var favorites: [Movie] = [] {
         didSet {
             favorites.isEmpty ? showEmptyStateView(message: "Got favorites?") : dismissEmptyStateView()
         }
     }
+    
+    // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,8 @@ class FavoritesListViewController: MNDataLoadingViewController {
         getFavorites()
     }
     
+    // MARK: - Methods
+    
     func getFavorites() {
         PersistenceManager.retrieveFavorites { [weak self] result in
             guard let self = self else { return }
@@ -43,6 +49,8 @@ class FavoritesListViewController: MNDataLoadingViewController {
             }
         }
     }
+    
+    // MARK: - Private methods
     
     private func configureViewController() {
         title = "Favorites"
@@ -65,6 +73,8 @@ class FavoritesListViewController: MNDataLoadingViewController {
     }
 
 }
+
+// MARK: - Table view delegate and data source
 
 extension FavoritesListViewController: UITableViewDataSource, UITableViewDelegate {
     

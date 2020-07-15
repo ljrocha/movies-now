@@ -41,6 +41,10 @@ struct Movie: Codable, Hashable {
         return releaseDate.convertToDisplayFormat()
     }
     
+    var ratingPercentage: Int {
+        return Int(voteAverage * 10)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title
