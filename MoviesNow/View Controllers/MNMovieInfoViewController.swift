@@ -35,37 +35,25 @@ class MNMovieInfoViewController: UIViewController {
     // MARK: - Private methods
     
     private func configure() {
-        view.addSubviews(titleLabel, dateLabel, overviewTitleLabel, overviewLabel, genreTitleLabel, genreLabel, userScoreTitleLabel, userScoreLabel)
+        let sectionSpacing: CGFloat = 8
+        
+        let headerStackView = MNStackView(arrangedSubviews: [titleLabel, dateLabel])
+        let overviewStackView = MNStackView(arrangedSubviews: [overviewTitleLabel, overviewLabel])
+        let genreStackView = MNStackView(arrangedSubviews: [genreTitleLabel, genreLabel])
+        let containerStackView = MNStackView(arrangedSubviews: [headerStackView, overviewStackView, genreStackView])
+        containerStackView.spacing = sectionSpacing
+        
+        view.addSubviews(containerStackView, userScoreTitleLabel, userScoreLabel)
         view.backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.9)
         view.layer.cornerRadius = 10
         
         let padding: CGFloat = 15
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            containerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            
-            overviewTitleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
-            overviewTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            overviewTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            
-            overviewLabel.topAnchor.constraint(equalTo: overviewTitleLabel.bottomAnchor, constant: 3),
-            overviewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            overviewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            
-            genreTitleLabel.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 10),
-            genreTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            genreTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            
-            genreLabel.topAnchor.constraint(equalTo: genreTitleLabel.bottomAnchor, constant: 3),
-            genreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            genreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            
-            userScoreTitleLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 10),
+            userScoreTitleLabel.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: sectionSpacing),
             userScoreTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             userScoreTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             

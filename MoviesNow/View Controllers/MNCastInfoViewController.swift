@@ -49,7 +49,8 @@ class MNCastInfoViewController: MNDataLoadingViewController {
     // MARK: - Private methods
     
     private func configure() {
-        view.addSubviews(castTitleLabel, castMembersLabel)
+        let stackView = MNStackView(arrangedSubviews: [castTitleLabel, castMembersLabel])
+        view.addSubview(stackView)
         view.backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.9)
         view.layer.cornerRadius = 10
         
@@ -57,14 +58,10 @@ class MNCastInfoViewController: MNDataLoadingViewController {
         
         let padding: CGFloat = 15
         NSLayoutConstraint.activate([
-            castTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            castTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            castTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            
-            castMembersLabel.topAnchor.constraint(equalTo: castTitleLabel.bottomAnchor, constant: 3),
-            castMembersLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            castMembersLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            castMembersLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
         ])
     }
 
