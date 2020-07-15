@@ -14,7 +14,7 @@ class FavoriteCell: UITableViewCell {
     
     static let reuseID = "FavoriteCell"
     
-    let movieImageView = UIImageView(frame: .zero)
+    let movieImageView = MNMovieImageView(frame: .zero)
     let titleLabel = MNLabel(textStyle: .headline)
     let genreLabel = MNLabel(textStyle: .caption2)
     let dateLabel = MNLabel(textStyle: .caption2)
@@ -55,10 +55,6 @@ class FavoriteCell: UITableViewCell {
         let innerStackView = MNStackView(arrangedSubviews: [titleLabel, genreLabel, dateLabel])
         let outerStackView = MNStackView(arrangedSubviews: [innerStackView, descriptionLabel])
         contentView.addSubviews(movieImageView, outerStackView)
-        
-        movieImageView.layer.borderColor = UIColor.systemGray.cgColor
-        movieImageView.layer.borderWidth = 0.5
-        movieImageView.translatesAutoresizingMaskIntoConstraints = false
         
         descriptionLabel.numberOfLines = 2
         

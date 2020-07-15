@@ -14,7 +14,7 @@ class MovieCell: UICollectionViewCell {
     
     static let reuseID = "MovieCell"
     
-    let imageView = UIImageView(frame: .zero)
+    let imageView = MNMovieImageView(frame: .zero)
     let titleLabel = MNLabel(fontSize: 12, weight: .semibold, textAlignment: .center)
     let genreLabel = MNLabel(fontSize: 10, weight: .light, textAlignment: .center)
     
@@ -50,7 +50,6 @@ class MovieCell: UICollectionViewCell {
     private func configure() {
         contentView.addSubviews(imageView, titleLabel, genreLabel)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false        
         genreLabel.numberOfLines = 1
         
         let padding: CGFloat = 0
