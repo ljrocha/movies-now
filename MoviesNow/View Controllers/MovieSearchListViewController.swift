@@ -10,6 +10,8 @@ import UIKit
 
 class MovieSearchListViewController: MNMovieListViewController {
     
+    // MARK: - Properties
+    
     let searchBar = UISearchBar()
     
     override var movies: [Movie] {
@@ -17,6 +19,8 @@ class MovieSearchListViewController: MNMovieListViewController {
             movies.isEmpty ? showEmptyStateView(message: "Get your search on!") : dismissEmptyStateView()
         }
     }
+    
+    // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,8 @@ class MovieSearchListViewController: MNMovieListViewController {
         
         searchBar.resignFirstResponder()
     }
+    
+    // MARK: - Methods
     
     override func fetchMovies() {
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else { return }
@@ -58,6 +64,8 @@ class MovieSearchListViewController: MNMovieListViewController {
         }
     }
     
+    // MARK: - Private methods
+    
     private func configureSearchBar() {
         searchBar.placeholder = "Search for movie"
         searchBar.keyboardType = .webSearch
@@ -66,6 +74,8 @@ class MovieSearchListViewController: MNMovieListViewController {
     }
     
 }
+
+// MARK: - Search bar delegate
 
 extension MovieSearchListViewController: UISearchBarDelegate {
     

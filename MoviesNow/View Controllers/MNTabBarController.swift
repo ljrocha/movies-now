@@ -10,11 +10,15 @@ import UIKit
 
 class MNTabBarController: UITabBarController {
 
+    // MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         viewControllers = [createTopRatedListNavigationController(), createMovieSearchListNavigationController(), createFavoritesListNavigationController()]
     }
+    
+    // MARK: - Private methods
     
     private func createTopRatedListNavigationController() -> UINavigationController {
         let topRatedListViewController = TopRatedListViewController()

@@ -10,8 +10,12 @@ import UIKit
 
 class MNEmptyStateView: UIView {
     
+    // MARK: - Properties
+    
     let messageLabel = MNLabel(fontSize: 24, weight: .bold, textAlignment: .center)
     let filmImageView = UIImageView()
+    
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,6 +26,8 @@ class MNEmptyStateView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         addSubviews(messageLabel, filmImageView)

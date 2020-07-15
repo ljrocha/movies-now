@@ -10,6 +10,8 @@ import UIKit
 
 class MNLabel: UILabel {
 
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -34,6 +36,8 @@ class MNLabel: UILabel {
         self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
         self.textAlignment = textAlignment
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         numberOfLines = 0

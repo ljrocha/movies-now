@@ -14,6 +14,8 @@ class MNMovieListViewController: MNDataLoadingViewController {
         case main
     }
     
+    // MARK: - Properties
+    
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
     
@@ -21,6 +23,8 @@ class MNMovieListViewController: MNDataLoadingViewController {
     var page = 1
     var hasMoreDataToLoad = true
     var isLoadingMoreData = false
+    
+    // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,8 @@ class MNMovieListViewController: MNDataLoadingViewController {
         fetchMovies()
     }
     
+    // MARK: - Methods
+    
     func fetchMovies() {}
     
     func updateMovies() {
@@ -39,6 +45,8 @@ class MNMovieListViewController: MNDataLoadingViewController {
         snapshot.appendItems(movies)
         dataSource.apply(snapshot)
     }
+    
+    // MARK: - Private methods
     
     private func configureViewController() {
         title = "Movie List"
@@ -77,6 +85,8 @@ class MNMovieListViewController: MNDataLoadingViewController {
     }
     
 }
+
+// MARK: - Collection view delegate
 
 extension MNMovieListViewController: UICollectionViewDelegate {
     

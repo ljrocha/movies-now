@@ -10,8 +10,12 @@ import UIKit
 
 class MNDataLoadingViewController: UIViewController {
 
+    // MARK: - Properties
+    
     var loadingView: MNLoadingView!
     var emptyStateView: MNEmptyStateView!
+    
+    // MARK: - Methods
     
     func showLoadingView() {
         loadingView = MNLoadingView(frame: view.bounds)

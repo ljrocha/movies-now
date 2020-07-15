@@ -10,6 +10,8 @@ import UIKit
 
 class FavoriteCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     static let reuseID = "FavoriteCell"
     
     let movieImageView = UIImageView(frame: .zero)
@@ -17,6 +19,8 @@ class FavoriteCell: UITableViewCell {
     let genreLabel = MNLabel(fontSize: 10, weight: .light)
     let dateLabel = MNLabel(fontSize: 10, weight: .light)
     let descriptionLabel = MNLabel(fontSize: 12, weight: .regular)
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,6 +31,8 @@ class FavoriteCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Methods
     
     func set(movie: Movie) {
         titleLabel.text = movie.title
@@ -42,6 +48,8 @@ class FavoriteCell: UITableViewCell {
             }
         }
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         contentView.addSubviews(movieImageView, titleLabel, genreLabel, dateLabel, descriptionLabel)

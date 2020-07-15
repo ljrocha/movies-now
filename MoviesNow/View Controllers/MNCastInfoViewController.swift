@@ -10,10 +10,14 @@ import UIKit
 
 class MNCastInfoViewController: MNDataLoadingViewController {
 
+    // MARK: - Properties
+    
     let castTitleLabel = MNLabel(textStyle: .headline)
     let castMembersLabel = MNLabel(textStyle: .body)
     
     var movie: Movie!
+    
+    // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +25,8 @@ class MNCastInfoViewController: MNDataLoadingViewController {
         configure()
         fetchCastMembers()
     }
+    
+    // MARK: - Methods
     
     func fetchCastMembers() {
         showLoadingView()
@@ -39,6 +45,8 @@ class MNCastInfoViewController: MNDataLoadingViewController {
             }
         }
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         view.addSubviews(castTitleLabel, castMembersLabel)

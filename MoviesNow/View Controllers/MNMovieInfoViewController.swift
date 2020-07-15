@@ -10,6 +10,8 @@ import UIKit
 
 class MNMovieInfoViewController: UIViewController {
 
+    // MARK: - Properties
+    
     let titleLabel = MNLabel(textStyle: .title1, textAlignment: .center)
     let dateLabel = MNLabel(textStyle: .caption1, textAlignment: .center)
     let overviewTitleLabel = MNLabel(textStyle: .headline)
@@ -21,12 +23,16 @@ class MNMovieInfoViewController: UIViewController {
     
     var movie: Movie!
     
+    // MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configure()
         setupUI()
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         view.addSubviews(titleLabel, dateLabel, overviewTitleLabel, overviewLabel, genreTitleLabel, genreLabel, userScoreTitleLabel, userScoreLabel)

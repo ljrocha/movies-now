@@ -10,11 +10,15 @@ import UIKit
 
 class MovieCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
     static let reuseID = "MovieCell"
     
     let imageView = UIImageView(frame: .zero)
     let titleLabel = MNLabel(fontSize: 12, weight: .semibold, textAlignment: .center)
     let genreLabel = MNLabel(fontSize: 10, weight: .light, textAlignment: .center)
+    
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +29,8 @@ class MovieCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Methods
     
     func set(movie: Movie) {
         titleLabel.text = movie.title
@@ -38,6 +44,8 @@ class MovieCell: UICollectionViewCell {
             }
         }
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         contentView.addSubviews(imageView, titleLabel, genreLabel)

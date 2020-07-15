@@ -10,12 +10,16 @@ import UIKit
 
 class MovieDetailViewController: MNDataLoadingViewController {
     
+    // MARK: - Properties
+    
     let scrollView = UIScrollView()
     let stackView = UIStackView()
     
     let imageView = UIImageView(frame: .zero)
     
     var movie: Movie!
+    
+    // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,8 @@ class MovieDetailViewController: MNDataLoadingViewController {
         fetchMovieBackdropImage()
         setupUI()
     }
+    
+    // MARK: - Methods
     
     func fetchMovieBackdropImage() {
         MovieStore.shared.fetchBackdropImage(for: movie, size: .large) { [weak self] image in
@@ -49,6 +55,8 @@ class MovieDetailViewController: MNDataLoadingViewController {
             self.presentAlertOnMainThread(title: "Success!", message: "You have successfully added this movie to your favorites", buttonTitle: "OK")
         }
     }
+    
+    // MARK: - Private methods
     
     private func configureViewController() {
         title = movie.title

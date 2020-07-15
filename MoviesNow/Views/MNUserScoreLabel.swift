@@ -10,6 +10,8 @@ import UIKit
 
 class MNUserScoreLabel: UILabel {
     
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -20,22 +22,7 @@ class MNUserScoreLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
-        font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        textAlignment = .center
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func strokeColor(forRating rating: Int) -> CGColor {
-        switch rating {
-        case ..<40:
-            return UIColor.red.cgColor
-        case ..<70:
-            return UIColor.yellow.cgColor
-        default:
-            return UIColor.green.cgColor
-        }
-    }
+    // MARK: - Methods
     
     func set(rating: Int) {
         text = " \(rating)%"
@@ -69,6 +56,25 @@ class MNUserScoreLabel: UILabel {
         basicAnimation.isRemovedOnCompletion = false
         
         shapeLayer.add(basicAnimation, forKey: "basic")
+    }
+    
+    // MARK: - Private methods
+    
+    private func configure() {
+        font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        textAlignment = .center
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func strokeColor(forRating rating: Int) -> CGColor {
+        switch rating {
+        case ..<40:
+            return UIColor.red.cgColor
+        case ..<70:
+            return UIColor.yellow.cgColor
+        default:
+            return UIColor.green.cgColor
+        }
     }
 
 }
