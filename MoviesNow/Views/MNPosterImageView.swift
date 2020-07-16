@@ -10,6 +10,10 @@ import UIKit
 
 class MNPosterImageView: UIImageView {
     
+    // MARK: - Properties
+    
+    let placeholderImage = UIImage(named: "placeholder")
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -25,8 +29,9 @@ class MNPosterImageView: UIImageView {
     // MARK: - Methods
     
     func downloadImage(forMovie movie: Movie, size: PosterImageSize) {
+        image = placeholderImage
         MovieStore.shared.fetchPosterImage(for: movie, size: size) { [weak self] image in
-            guard let self = self else { return }
+            guard let self = self, let image = image else { return }
             
             DispatchQueue.main.async {
                 self.image = image
@@ -39,6 +44,7 @@ class MNPosterImageView: UIImageView {
     private func configure() {
         layer.cornerRadius = 3
         clipsToBounds = true
+        contentMode = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
     }
 

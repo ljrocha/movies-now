@@ -10,6 +10,10 @@ import UIKit
 
 class MNBackdropImageView: UIImageView {
 
+    // MARK: - Properties
+    
+    let placeholderImage = UIImage(named: "placeholder")
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -25,8 +29,9 @@ class MNBackdropImageView: UIImageView {
     // MARK: - Methods
     
     func downloadImage(forMovie movie: Movie, size: BackdropImageSize) {
+        image = placeholderImage
         MovieStore.shared.fetchBackdropImage(for: movie, size: size) { [weak self] image in
-            guard let self = self else { return }
+            guard let self = self, let image = image else { return }
             
             DispatchQueue.main.async {
                 self.image = image
