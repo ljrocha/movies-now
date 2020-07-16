@@ -1,5 +1,5 @@
 //
-//  MNMovieImageView.swift
+//  MNPosterImageView.swift
 //  MoviesNow
 //
 //  Created by Leandro Rocha on 7/15/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MNMovieImageView: UIImageView {
+class MNPosterImageView: UIImageView {
     
     // MARK: - Initializers
     

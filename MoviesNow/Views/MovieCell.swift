@@ -14,7 +14,7 @@ class MovieCell: UICollectionViewCell {
     
     static let reuseID = "MovieCell"
     
-    let imageView = MNMovieImageView(frame: .zero)
+    let imageView = MNPosterImageView(frame: .zero)
     let titleLabel = MNLabel(fontSize: 12, weight: .semibold, textAlignment: .center)
     let genreLabel = MNLabel(fontSize: 10, weight: .light, textAlignment: .center)
     
