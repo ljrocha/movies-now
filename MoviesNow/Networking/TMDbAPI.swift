@@ -37,19 +37,19 @@ struct TMDbAPI {
         return url(for: .movies, appendingPath: "top_rated", parameters: ["page": String(page)])
     }
     
-    static func movieSearchURL(term: String, forPage page: Int) -> URL {
+    static func movieSearchURL(forTerm term: String, page: Int) -> URL {
         return url(for: .search, appendingPath: nil, parameters: ["page": String(page), "query": term, "include_adult": "false"])
     }
     
-    static func castMembersURL(movieID: Int) -> URL {
+    static func castMembersURL(forMovieID movieID: Int) -> URL {
         return url(for: .movies, appendingPath: "\(movieID)/credits")
     }
     
-    static func posterImageURL(path: String, size: PosterImageSize) -> URL {
+    static func posterImageURL(forPath path: String, size: PosterImageSize) -> URL {
         return URL(string: imageBaseURLString + size.rawValue + path)!
     }
     
-    static func backdropImageURL(path: String, size: BackdropImageSize) -> URL {
+    static func backdropImageURL(forPath path: String, size: BackdropImageSize) -> URL {
         return URL(string: imageBaseURLString + size.rawValue + path)!
     }
     

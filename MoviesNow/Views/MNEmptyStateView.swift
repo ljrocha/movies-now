@@ -12,8 +12,8 @@ class MNEmptyStateView: UIView {
     
     // MARK: - Properties
     
-    let messageLabel = MNLabel(fontSize: 24, weight: .bold, textAlignment: .center)
     let filmImageView = UIImageView()
+    let messageLabel = MNLabel(fontSize: 24, weight: .bold, textAlignment: .center)
     
     // MARK: - Initializers
     
@@ -30,14 +30,14 @@ class MNEmptyStateView: UIView {
     // MARK: - Private methods
     
     private func configure() {
-        addSubviews(messageLabel, filmImageView)
+        addSubviews(filmImageView, messageLabel)
         
         backgroundColor = .systemBackground
         
-        messageLabel.textColor = .systemGray2
         filmImageView.image = UIImage(systemName: "film")
         filmImageView.tintColor = .systemGray2
         filmImageView.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.textColor = .systemGray2
         
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([

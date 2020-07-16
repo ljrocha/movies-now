@@ -24,12 +24,12 @@ class MovieStore {
     }
     
     func fetchMovies(forSearchTerm term: String, page: Int, completion: @escaping (Result<MovieResponse, MNError>) -> Void) {
-        let url = TMDbAPI.movieSearchURL(term: term, forPage: page)
+        let url = TMDbAPI.movieSearchURL(forTerm: term, page: page)
         fetchMovies(url: url, completion: completion)
     }
     
     func fetchCastMembers(for movie: Movie, completion: @escaping (Result<[CastMember], MNError>) -> Void) {
-        let url = TMDbAPI.castMembersURL(movieID: movie.id)
+        let url = TMDbAPI.castMembersURL(forMovieID: movie.id)
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let _ = error {
@@ -64,7 +64,7 @@ class MovieStore {
             return
         }
         
-        let imageURL = TMDbAPI.posterImageURL(path: posterImagePath, size: size)
+        let imageURL = TMDbAPI.posterImageURL(forPath: posterImagePath, size: size)
         fetchImage(url: imageURL, completion: completion)
     }
     
@@ -74,7 +74,7 @@ class MovieStore {
             return
         }
         
-        let imageURL = TMDbAPI.backdropImageURL(path: backdropImagePath, size: size)
+        let imageURL = TMDbAPI.backdropImageURL(forPath: backdropImagePath, size: size)
         fetchImage(url: imageURL, completion: completion)
     }
     
