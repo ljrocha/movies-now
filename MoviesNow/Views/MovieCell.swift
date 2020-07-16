@@ -52,20 +52,19 @@ class MovieCell: UICollectionViewCell {
         
         genreLabel.numberOfLines = 1
         
-        let padding: CGFloat = 0
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.5),
             
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 3),
-            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             genreLabel.heightAnchor.constraint(equalToConstant: 14)
         ])
     }

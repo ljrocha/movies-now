@@ -10,6 +10,8 @@ import UIKit
 
 class MNStackView: UIStackView {
     
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -19,6 +21,8 @@ class MNStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private methods
     
     private func configure() {
         axis = .vertical
