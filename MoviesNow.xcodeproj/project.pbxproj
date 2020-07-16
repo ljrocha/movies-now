@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4603D81924AD15D9005DEDF0 /* CastMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603D81824AD15D9005DEDF0 /* CastMember.swift */; };
-		4603D82324AD8B09005DEDF0 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603D82224AD8B09005DEDF0 /* Date+Ext.swift */; };
-		4603D82524AD8B14005DEDF0 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603D82424AD8B14005DEDF0 /* String+Ext.swift */; };
 		463898A624AAF83B001446DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463898A524AAF83B001446DF /* AppDelegate.swift */; };
 		463898A824AAF83B001446DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463898A724AAF83B001446DF /* SceneDelegate.swift */; };
 		463898AF24AAF83C001446DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463898AE24AAF83C001446DF /* Assets.xcassets */; };
@@ -42,8 +40,6 @@
 
 /* Begin PBXFileReference section */
 		4603D81824AD15D9005DEDF0 /* CastMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastMember.swift; sourceTree = "<group>"; };
-		4603D82224AD8B09005DEDF0 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		4603D82424AD8B14005DEDF0 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		463898A224AAF83B001446DF /* MoviesNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		463898A524AAF83B001446DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		463898A724AAF83B001446DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,8 +161,6 @@
 		468FA34724AE529000B5C624 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4603D82224AD8B09005DEDF0 /* Date+Ext.swift */,
-				4603D82424AD8B14005DEDF0 /* String+Ext.swift */,
 				46F9B8C824AE718500732189 /* UIView+Ext.swift */,
 				464822B324B7EADF0089F2E6 /* UIViewController+Ext.swift */,
 			);
@@ -266,7 +260,6 @@
 				46F9B8C924AE718500732189 /* UIView+Ext.swift in Sources */,
 				463898BA24AAFC80001446DF /* TopRatedListViewController.swift in Sources */,
 				46FC5B1224BD15B100BCAF6B /* MNCastInfoViewController.swift in Sources */,
-				4603D82324AD8B09005DEDF0 /* Date+Ext.swift in Sources */,
 				46A7EEFA24B12576003A3C78 /* MovieSearchListViewController.swift in Sources */,
 				463898A624AAF83B001446DF /* AppDelegate.swift in Sources */,
 				463898BC24AAFD2D001446DF /* Movie.swift in Sources */,
@@ -275,7 +268,6 @@
 				46566B7224B5526E0059DBCC /* PersistenceManager.swift in Sources */,
 				46A7EEF624B0F9D9003A3C78 /* MNTabBarController.swift in Sources */,
 				463898A824AAF83B001446DF /* SceneDelegate.swift in Sources */,
-				4603D82524AD8B14005DEDF0 /* String+Ext.swift in Sources */,
 				46A7EEF824B12256003A3C78 /* MNMovieListViewController.swift in Sources */,
 				4652386824AC1342001F3FE8 /* MNError.swift in Sources */,
 				46F9B8C724AE608400732189 /* MNLabel.swift in Sources */,

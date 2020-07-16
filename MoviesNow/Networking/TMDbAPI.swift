@@ -27,9 +27,17 @@ enum BackdropImageSize: String {
 
 struct TMDbAPI {
     
+    // MARK: - Properties
+    
     private static let baseURLString = "https://api.themoviedb.org/3/"
     private static let imageBaseURLString = "https://image.tmdb.org/t/p/"
     private static let apiKey = "d9849a7a8ca5063953c590dc110d6874"
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter
+    }()
     
     // MARK: - Methods
     

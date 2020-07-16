@@ -21,11 +21,18 @@ struct MovieResponse: Decodable {
 }
 
 struct Movie: Codable, Hashable {
+    
+    private static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        return dateFormatter
+    }()
+    
     let uuid = UUID()
     let id: Int
     let title: String
     let description: String
-    let releaseDate: String
+    let releaseDate: Date
     let genres: [Int]
     let posterImagePath: String?
     let backdropImagePath: String?
@@ -38,7 +45,7 @@ struct Movie: Codable, Hashable {
     }
     
     var formattedDate: String {
-        return releaseDate.convertToDisplayFormat()
+        return Movie.dateFormatter.string(from: releaseDate)
     }
     
     var ratingPercentage: Int {

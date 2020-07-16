@@ -10,9 +10,13 @@ import UIKit
 
 class MovieStore {
     
+    // MARK: - Properties
+    
     static let shared = MovieStore()
     
     private let imageCache = NSCache<NSString, UIImage>()
+    
+    // MARK: - Initializers
     
     private init() {}
     
@@ -99,6 +103,7 @@ class MovieStore {
             
             do {
                 let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(TMDbAPI.dateFormatter)
                 let movieResponse = try decoder.decode(MovieResponse.self, from: data)
                 completion(.success(movieResponse))
             } catch {
