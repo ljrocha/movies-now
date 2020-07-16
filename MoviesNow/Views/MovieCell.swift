@@ -14,7 +14,7 @@ class MovieCell: UICollectionViewCell {
     
     static let reuseID = "MovieCell"
     
-    let imageView = MNPosterImageView(frame: .zero)
+    let posterImageView = MNPosterImageView(frame: .zero)
     let titleLabel = MNLabel(fontSize: 12, weight: .semibold, textAlignment: .center)
     let genreLabel = MNLabel(fontSize: 10, weight: .light, textAlignment: .center)
     
@@ -35,30 +35,23 @@ class MovieCell: UICollectionViewCell {
     func set(movie: Movie) {
         titleLabel.text = movie.title
         genreLabel.text = movie.genresString
-        
-        MovieStore.shared.fetchPosterImage(for: movie, size: .small) { [weak self] image in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                self.imageView.image = image
-            }
-        }
+        posterImageView.downloadImage(forMovie: movie, size: .small)
     }
     
     // MARK: - Private methods
     
     private func configure() {
-        contentView.addSubviews(imageView, titleLabel, genreLabel)
+        contentView.addSubviews(posterImageView, titleLabel, genreLabel)
         
         genreLabel.numberOfLines = 1
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.5),
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor, multiplier: 1.5),
             
-            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
+            titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             

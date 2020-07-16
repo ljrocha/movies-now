@@ -39,14 +39,7 @@ class FavoriteCell: UITableViewCell {
         genreLabel.text = movie.genresString
         dateLabel.text = movie.formattedDate
         descriptionLabel.text = movie.description
-        
-        MovieStore.shared.fetchPosterImage(for: movie, size: .small) { [weak self] image in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                self.posterImageView.image = image
-            }
-        }
+        posterImageView.downloadImage(forMovie: movie, size: .small)
     }
     
     // MARK: - Private methods
