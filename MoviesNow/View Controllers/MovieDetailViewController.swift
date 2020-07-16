@@ -95,15 +95,16 @@ class MovieDetailViewController: MNDataLoadingViewController {
     private func setupUI() {
         let movieInfoViewController = MNMovieInfoViewController()
         movieInfoViewController.movie = movie
-        addChild(movieInfoViewController)
-        stackView.addArrangedSubview(movieInfoViewController.view)
-        movieInfoViewController.didMove(toParent: self)
+        add(movieInfoViewController)
         
         let castInfoViewController = MNCastInfoViewController()
         castInfoViewController.movie = movie
-        addChild(castInfoViewController)
-        stackView.addArrangedSubview(castInfoViewController.view)
-        castInfoViewController.didMove(toParent: self)
+        add(castInfoViewController)
     }
     
+    private func add(_ child: UIViewController) {
+        addChild(child)
+        stackView.addArrangedSubview(child.view)
+        child.didMove(toParent: self)
+    }
 }
