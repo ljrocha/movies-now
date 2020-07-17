@@ -27,9 +27,17 @@ enum BackdropImageSize: String {
 
 struct TMDbAPI {
     
+    // MARK: - Properties
+    
     private static let baseURLString = "https://api.themoviedb.org/3/"
     private static let imageBaseURLString = "https://image.tmdb.org/t/p/"
     private static let apiKey = "d9849a7a8ca5063953c590dc110d6874"
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter
+    }()
     
     // MARK: - Methods
     
@@ -37,19 +45,19 @@ struct TMDbAPI {
         return url(for: .movies, appendingPath: "top_rated", parameters: ["page": String(page)])
     }
     
-    static func movieSearchURL(term: String, forPage page: Int) -> URL {
+    static func movieSearchURL(forTerm term: String, page: Int) -> URL {
         return url(for: .search, appendingPath: nil, parameters: ["page": String(page), "query": term, "include_adult": "false"])
     }
     
-    static func castMembersURL(movieID: Int) -> URL {
+    static func castMembersURL(forMovieID movieID: Int) -> URL {
         return url(for: .movies, appendingPath: "\(movieID)/credits")
     }
     
-    static func posterImageURL(path: String, size: PosterImageSize) -> URL {
+    static func posterImageURL(forPath path: String, size: PosterImageSize) -> URL {
         return URL(string: imageBaseURLString + size.rawValue + path)!
     }
     
-    static func backdropImageURL(path: String, size: BackdropImageSize) -> URL {
+    static func backdropImageURL(forPath path: String, size: BackdropImageSize) -> URL {
         return URL(string: imageBaseURLString + size.rawValue + path)!
     }
     

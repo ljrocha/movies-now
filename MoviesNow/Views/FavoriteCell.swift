@@ -14,7 +14,7 @@ class FavoriteCell: UITableViewCell {
     
     static let reuseID = "FavoriteCell"
     
-    let movieImageView = MNMovieImageView(frame: .zero)
+    let posterImageView = MNPosterImageView(frame: .zero)
     let titleLabel = MNLabel(textStyle: .headline)
     let genreLabel = MNLabel(textStyle: .caption2)
     let dateLabel = MNLabel(textStyle: .caption2)
@@ -39,14 +39,7 @@ class FavoriteCell: UITableViewCell {
         genreLabel.text = movie.genresString
         dateLabel.text = movie.formattedDate
         descriptionLabel.text = movie.description
-        
-        MovieStore.shared.fetchPosterImage(for: movie, size: .small) { [weak self] image in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                self.movieImageView.image = image
-            }
-        }
+        posterImageView.downloadImage(forMovie: movie, size: .small)
     }
     
     // MARK: - Private methods
@@ -54,21 +47,21 @@ class FavoriteCell: UITableViewCell {
     private func configure() {
         let innerStackView = MNStackView(arrangedSubviews: [titleLabel, genreLabel, dateLabel])
         let outerStackView = MNStackView(arrangedSubviews: [innerStackView, descriptionLabel])
-        contentView.addSubviews(movieImageView, outerStackView)
+        contentView.addSubviews(posterImageView, outerStackView)
         
         descriptionLabel.numberOfLines = 2
         
         let padding: CGFloat = 12
         NSLayoutConstraint.activate([
-            movieImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            movieImageView.widthAnchor.constraint(equalToConstant: 80),
-            movieImageView.heightAnchor.constraint(equalTo: movieImageView.widthAnchor, multiplier: 1.5),
-            movieImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: padding),
-            movieImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -padding),
+            posterImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            posterImageView.widthAnchor.constraint(equalToConstant: 80),
+            posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor, multiplier: 1.5),
+            posterImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: padding),
+            posterImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -padding),
             
             outerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 1.5),
-            outerStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: padding),
+            outerStackView.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: padding),
             outerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             outerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -(padding * 1.5))
         ])

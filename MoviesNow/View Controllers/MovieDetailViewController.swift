@@ -8,14 +8,14 @@
 
 import UIKit
 
-class MovieDetailViewController: MNDataLoadingViewController {
+class MovieDetailViewController: UIViewController {
     
     // MARK: - Properties
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
     
-    let imageView = UIImageView(frame: .zero)
+    let backdropImageView = MNBackdropImageView(frame: .zero)
     
     var movie: Movie!
     
@@ -25,23 +25,12 @@ class MovieDetailViewController: MNDataLoadingViewController {
         super.viewDidLoad()
         
         configureViewController()
-        configureImageView()
+        configureBackdropImageView()
         configureScrollView()
-        fetchMovieBackdropImage()
         setupUI()
     }
     
     // MARK: - Methods
-    
-    func fetchMovieBackdropImage() {
-        MovieStore.shared.fetchBackdropImage(for: movie, size: .large) { [weak self] image in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                self.imageView.image = image
-            }
-        }
-    }
     
     @objc func addTapped() {
         PersistenceManager.updateWith(favorite: movie, actionType: .add) { [weak self] error in
@@ -65,16 +54,14 @@ class MovieDetailViewController: MNDataLoadingViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
     
-    private func configureImageView() {
-        view.addSubview(imageView)
-        
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureBackdropImageView() {
+        view.addSubview(backdropImageView)
+        backdropImageView.downloadImage(forMovie: movie, size: .large)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.5),
+            backdropImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backdropImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            backdropImageView.heightAnchor.constraint(equalTo: backdropImageView.widthAnchor, multiplier: 0.5),
         ])
     }
     
@@ -108,15 +95,16 @@ class MovieDetailViewController: MNDataLoadingViewController {
     private func setupUI() {
         let movieInfoViewController = MNMovieInfoViewController()
         movieInfoViewController.movie = movie
-        addChild(movieInfoViewController)
-        stackView.addArrangedSubview(movieInfoViewController.view)
-        movieInfoViewController.didMove(toParent: self)
+        add(movieInfoViewController)
         
         let castInfoViewController = MNCastInfoViewController()
         castInfoViewController.movie = movie
-        addChild(castInfoViewController)
-        stackView.addArrangedSubview(castInfoViewController.view)
-        castInfoViewController.didMove(toParent: self)
+        add(castInfoViewController)
     }
     
+    private func add(_ child: UIViewController) {
+        addChild(child)
+        stackView.addArrangedSubview(child.view)
+        child.didMove(toParent: self)
+    }
 }
