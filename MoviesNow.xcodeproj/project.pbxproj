@@ -119,7 +119,19 @@
 			path = MoviesNow;
 			sourceTree = "<group>";
 		};
-		468FA34424AE520500B5C624 /* Views */ = {
+		465C0F4424C22A04008BB89E /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				46F9B8CC24AEAA5700732189 /* MNDataLoadingViewController.swift */,
+				46A7EEF724B12256003A3C78 /* MNMovieListViewController.swift */,
+				46A7EEF524B0F9D9003A3C78 /* MNTabBarController.swift */,
+				46FC5B1324BD360E00BCAF6B /* MNMovieInfoViewController.swift */,
+				46FC5B1124BD15B100BCAF6B /* MNCastInfoViewController.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		465C0F4524C22A3F008BB89E /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				46F9B8C624AE608400732189 /* MNLabel.swift */,
@@ -127,10 +139,18 @@
 				466CCD5724BF81E5007A8DD7 /* MNStackView.swift */,
 				466CCD5924BF8619007A8DD7 /* MNPosterImageView.swift */,
 				4680AF7624C0E8CE00CA6114 /* MNBackdropImageView.swift */,
-				463898BD24AB03D9001446DF /* MovieCell.swift */,
-				465C91AB24B656DA00F723F9 /* FavoriteCell.swift */,
 				46FD4C5224B8E0CC00580493 /* MNEmptyStateView.swift */,
 				46FD4C5424B92C1200580493 /* MNLoadingView.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		468FA34424AE520500B5C624 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				463898BD24AB03D9001446DF /* MovieCell.swift */,
+				465C91AB24B656DA00F723F9 /* FavoriteCell.swift */,
+				465C0F4524C22A3F008BB89E /* Custom */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,11 +162,7 @@
 				46A7EEF924B12576003A3C78 /* MovieSearchListViewController.swift */,
 				465C91A924B6417E00F723F9 /* FavoritesListViewController.swift */,
 				4659E1FD24AC399600033C19 /* MovieDetailViewController.swift */,
-				46F9B8CC24AEAA5700732189 /* MNDataLoadingViewController.swift */,
-				46A7EEF724B12256003A3C78 /* MNMovieListViewController.swift */,
-				46A7EEF524B0F9D9003A3C78 /* MNTabBarController.swift */,
-				46FC5B1324BD360E00BCAF6B /* MNMovieInfoViewController.swift */,
-				46FC5B1124BD15B100BCAF6B /* MNCastInfoViewController.swift */,
+				465C0F4424C22A04008BB89E /* Custom */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

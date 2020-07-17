@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailViewController: MNDataLoadingViewController {
+class MovieDetailViewController: UIViewController {
     
     // MARK: - Properties
     
